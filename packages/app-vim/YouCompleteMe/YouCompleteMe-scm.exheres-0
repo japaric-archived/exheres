@@ -1,0 +1,70 @@
+# Copyright 2013 Thomas Witt
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_EXTERNAL_REFS="
+    python/ycm/completers/python/jedi:
+    python/ycm/completers/cs/OmniSharpServer:
+"
+CMAKE_SOURCE="${WORK}/cpp"
+require github [ user=Valloric ]  cmake [ api=2 out_of_source=false ]
+
+
+SUMMARY="Fast, as-you-type, fuzzy-search code completion engine"
+DESCRIPTION="
+several completion engines: an identifier-based engine that works with every
+programming language, a semantic, Clang-based engine that provides native
+semantic code completion for C/C++/Objective-C/Objective-C++ (from now on
+referred to as “the C-family languages”), a Jedi-based completion engine for
+Python, an OmniSharp-based completion engine for C# and an omnifunc-based
+completer that uses data from Vim's omnicomplete system to provide semantic
+completions for many other languages (Ruby, PHP etc.).
+"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    clang [[ description = [ clang completion for C/C++ ] ]]
+"
+#    sharp [[ description = [ omnisharp completion for C# ] ]]
+
+
+DEPENDENCIES="
+    build+run:
+        || (
+            app-editors/gvim[python][>=7.3.584]
+            app-editors/vim[python][>=7.3.584]
+        )
+        clang? ( dev-lang/clang[>=3.3] )
+    suggestion:
+        dev-util/jedi [[ description = [ autocompletion for python ] ]]
+"
+#        sharp? (
+#            dev-lang/mono
+#            dev-util/OmniSharpServer
+#        )
+#"
+
+BUGS_TO="pyromaniac@thwitt.de"
+
+CMAKE_SRC_CONFIGURE_OPTIONS=(
+    "clang USE_CLANG_COMPLETER=ON"
+    "clang USE_SYSTEM_LIBCLANG=ON"
+)
+
+src_compile() {
+    default
+
+#    if option sharp; then
+#        edo pushd "${WORK}"/python/ycm/completers/cs/OmniSharpServer
+#        edo xbuild
+#        edo popd
+#    fi
+}
+
+src_install() {
+    insinto /usr/share/vimfiles
+    doins -r autoload doc plugin python
+    dodoc README.md CONTRIBUTING.md
+}
+
