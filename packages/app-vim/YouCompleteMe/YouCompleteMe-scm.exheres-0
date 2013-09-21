@@ -63,7 +63,7 @@ src_compile() {
 }
 
 src_install() {
-    insinto /usr/share/vimfiles
+    insinto /usr/share/vim/vimfiles
     doins -r autoload doc plugin python
     dodoc README.md CONTRIBUTING.md
 }
