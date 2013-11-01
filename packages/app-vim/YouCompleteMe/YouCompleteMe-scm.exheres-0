@@ -2,8 +2,14 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_EXTERNAL_REFS="
-    python/ycm/completers/python/jedi:
     python/ycm/completers/cs/OmniSharpServer:
+    third_party/argparse:
+    third_party/bottle:
+    third_party/frozendict:
+    third_party/jedi:
+    third_party/requests:
+    third_party/requests-futures:
+    third_party/waitress:
 "
 CMAKE_SOURCE="${WORK}/cpp"
 require github [ user=Valloric ]  cmake [ api=2 out_of_source=false ]
