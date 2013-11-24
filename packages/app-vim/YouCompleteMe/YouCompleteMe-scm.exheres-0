@@ -12,6 +12,7 @@ SCM_EXTERNAL_REFS="
     third_party/waitress:
 "
 CMAKE_SOURCE="${WORK}/cpp"
+require python [ blacklist=3 multibuild=false ]
 require github [ user=Valloric ]  cmake [ api=2 out_of_source=false ]
 
 
@@ -38,11 +39,17 @@ MYOPTIONS="
 DEPENDENCIES="
     build+run:
         || (
-            app-editors/gvim[python][>=7.3.584]
-            app-editors/vim[python][>=7.3.584]
+        app-editors/gvim[python][>=7.3.584][python_abis:*(-)?]
+            app-editors/vim[python][>=7.3.584][python_abis:*(-)?]
         )
         clang? ( dev-lang/clang[>=3.3] )
-    suggestion:
+    run:
+        dev-python/bottle
+        dev-python/futures
+        dev-python/python-frozendict
+        dev-python/requests
+        dev-python/retries
+        dev-python/waitress
         dev-util/jedi [[ description = [ autocompletion for python ] ]]
 "
 #        sharp? (
@@ -54,8 +61,8 @@ DEPENDENCIES="
 BUGS_TO="pyromaniac@thwitt.de"
 
 CMAKE_SRC_CONFIGURE_OPTIONS=(
-    "clang USE_CLANG_COMPLETER=ON"
-    "clang USE_SYSTEM_LIBCLANG=ON"
+    "clang USE_CLANG_COMPLETER"
+    "clang USE_SYSTEM_LIBCLANG"
 )
 
 src_compile() {
@@ -70,7 +77,19 @@ src_compile() {
 
 src_install() {
     insinto /usr/share/vim/vimfiles
-    doins -r autoload doc plugin python
+    doins -r autoload doc plugin
+    insinto /usr/share/bim/vimfiles/python
+    doins python/ycm_client_support.so python/ycm_core.so
     dodoc README.md CONTRIBUTING.md
+
+    insinto $(python_get_sitedir)
+    doins -r python/*
+
+    edo sed -i -e 's:/usr/bin/env python:/usr/bin/env python2:' \
+        -e '/from server_utils import SetUpPythonPath/d' \
+        -e '/SetUpPythonPath()/d' \
+        "${IMAGE}"$(python_get_sitedir)/ycm/server/ycmd.py
+    edo sed -i -e '/utils.AddThirdPartyFoldersToSysPath()/d' \
+        "${IMAGE}"usr/share/vim/vimfiles/autoload/youcompleteme.vim
 }
 
