@@ -48,6 +48,7 @@ DEPENDENCIES="
         dev-python/futures
         dev-python/python-frozendict
         dev-python/requests
+        dev-python/requests-futures
         dev-python/retries
         dev-python/waitress
         dev-util/jedi [[ description = [ autocompletion for python ] ]]
