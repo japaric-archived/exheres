@@ -78,7 +78,7 @@ src_compile() {
 src_install() {
     insinto /usr/share/vim/vimfiles
     doins -r autoload doc plugin
-    insinto /usr/share/bim/vimfiles/python
+    insinto /usr/share/vim/vimfiles/python
     doins python/ycm_client_support.so python/ycm_core.so
     dodoc README.md CONTRIBUTING.md
 
