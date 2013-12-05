@@ -1,0 +1,35 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require setup-py [ import=distutils ]
+require github [ user="fredrik-johansson" ]
+
+SUMMARY="Pure-Python library for multiprecision floating-point arithmetic"
+DESCRIPTION="
+Mpmath is a pure-Python library for multiprecision floating-point arithmetic. It provides an
+extensive set of transcendental functions, unlimited exponent sizes, complex numbers, interval
+arithmetic, numerical integration and differentiation, root-finding, linear algebra, and much more.
+Almost any calculation can be performed just as well at 10-digit or 1000-digit precision, and in
+many cases mpmath implements asymptotically fast algorithms that scale well for extremely high
+precision work. Mpmath internally uses Python's builtin long integers by default, but automatically
+switches to GMP/MPIR for much faster high-precision arithmetic if gmpy is installed or if mpmath is
+imported from within Sage.
+"
+HOMEPAGE="https://github.com/fredrik-johansson/mpmath"
+
+LICENCES="BSD-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    gmp [[ description = [ Use gmp library for multiprecision arithmetic ] ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        gmp? ( dev-python/gmpy2[python_abis:*(-)?] )
+"
+
+test_one_multibuild() {
+    PYTHONPATH=$(ls -d ${PWD}/build/lib*) edo ${PYTHON} mpmath/tests/runtests.py
+}
+
