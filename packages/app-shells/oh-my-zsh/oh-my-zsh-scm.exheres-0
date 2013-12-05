@@ -1,0 +1,25 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=robbyrussell ]
+
+SUMMARY="A community-driven framework for managing your zsh configuration"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    app-shells/zsh
+"
+
+src_configure() {
+    # modify template to match the installaion path
+    edo sed -i 's:$HOME/.oh-my-zsh:/usr/share/oh-my-zsh:g' templates/zshrc.zsh-template
+}
+
+src_install() {
+    insinto /usr/share/${PN}
+    doins -r *
+}
+
