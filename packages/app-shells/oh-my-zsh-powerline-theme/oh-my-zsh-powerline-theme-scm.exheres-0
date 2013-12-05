@@ -1,0 +1,21 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=jeremyFreeAgent ]
+
+SUMMARY="oh-my-zsh Powerline style Theme"
+
+LICENCES="as-is"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build+run:
+        app-shells/oh-my-zsh
+"
+
+src_install() {
+    insinto /usr/share/oh-my-zsh/themes
+    doins powerline.zsh-theme
+}
+
