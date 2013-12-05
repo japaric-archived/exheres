@@ -1,0 +1,19 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require vim-plugin [ vim_version="7.2" ]
+require github [ user=bling pn="vim-${PN}" ]
+
+SUMMARY="lean & mean status/tabline for vim that's light as air"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+src_prepare() {
+    # remove unnecesary files
+    edo find -maxdepth 1 -type f -exec rm {} \;
+
+    default
+}
+
