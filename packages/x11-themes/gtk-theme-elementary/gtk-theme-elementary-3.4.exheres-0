@@ -1,0 +1,39 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="The official elementary GTK theme designed to be smooth, attractive, fast, and usable"
+HOMEPAGE="https://launchpad.net/egtk"
+DOWNLOADS="https://launchpad.net/egtk/${PV%?}x/${PV}/+download/elementary.tar.gz -> ${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    (
+        gtk [[ description = [ build theme for gtk ] ]]
+        gtk3 [[ description = [ build theme for gtk3 ] ]]
+    ) [[ number-selected = at-least-one ]]
+"
+
+DEPENDENCIES="
+    run:
+        gtk? (
+            x11-libs/gtk+:2
+            x11-themes/gtk-engines-murrine
+        )
+        gtk3? (
+            x11-libs/gtk+:3
+            x11-themes/gtk-engines-unico
+        )
+"
+
+WORK=${WORKBASE}/elementary
+
+src_install() {
+    insinto /usr/share/themes/elementary
+
+    optionq gtk && doins -r gtk-2.0
+    optionq gtk3 && doins -r gtk-3.0
+    doins -r index.theme metacity-1
+}
+
