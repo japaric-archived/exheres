@@ -1,0 +1,26 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gtk-icon-cache
+
+SUMMARY="A Gnome 3 icon theme by Tiheum"
+HOMEPAGE="http://tiheum.deviantart.com/art/${PN}-255099649"
+DOWNLOADS="http://ppa.launchpad.net/tiheum/equinox/ubuntu/pool/main/f/${PN}/${PN}_${PV}.tar.gz"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    run:
+        x11-themes/faenza-icon-theme
+"
+
+WORK=${WORKBASE}/${PN}-$(ever range 1-2 ${Pv})
+
+src_install() {
+    insinto /usr/share/icons
+
+    doins -r Faience*
+}
+
