@@ -1,0 +1,26 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require vim-plugin
+require github [ user=Shougo pn=${PN}.vim ]
+
+SUMMARY="Unite and create user interfaces"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="async"
+
+DEPENDENCIES="
+    run:
+        async? ( app-vim/vimproc )
+"
+
+src_prepare() {
+    # remove unnecessary files
+    edo rm -r vest
+    edo find -maxdepth 1 -type f -exec rm {} \;
+
+    default
+}
+
