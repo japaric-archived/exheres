@@ -1,0 +1,20 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require vim-plugin [ vim_version="7.3.885" vim_options="[lua]" ]
+require github [ user=Shougo pn="${PN}.vim" ]
+
+SUMMARY="Next generation completion framework after neocomplcache"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+src_prepare() {
+    # remove unnecessary files
+    edo rm -r vest
+    edo find -maxdepth 1 -type f -exec rm {} \;
+
+    default
+}
+
