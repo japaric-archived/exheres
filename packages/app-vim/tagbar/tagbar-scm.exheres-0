@@ -1,0 +1,19 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require vim-plugin
+require github [ user=majutsushi ]
+
+SUMMARY="Vim plugin that displays tags in a window, ordered by class"
+
+LICENCES="VIM"
+SLOT="0"
+PLATFORMS="~amd64"
+
+src_prepare() {
+    # remove unnecessary files
+    edo find -maxdepth 1 -type f -exec rm {} \;
+
+    default
+}
+
