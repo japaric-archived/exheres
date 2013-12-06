@@ -1,0 +1,20 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require vim-plugin [ vim_version="7.3" vim_options="[python][python_abis:*(-)?]" ]
+require github [ user=sjl pn="${PN}.vim" ]
+
+SUMMARY="Graph your vim undo tree in style"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+
+src_prepare() {
+    # remove unnecessary files and directories
+    edo rm -r site tests
+    edo find -maxdepth 1 -type f -exec rm {} \;
+
+    default
+}
+
