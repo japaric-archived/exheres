@@ -1,0 +1,24 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require vim-plugin
+require github [ user=edkolev pn="${PN}.vim" ]
+
+SUMMARY="Simple tmux statusline generator with support for powerline symbols and airline integration"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    run:
+        app-vim/airline
+"
+
+src_prepare() {
+    # remove unnecessary files
+    edo find -maxdepth 1 -type f -exec rm {} \;
+
+    default
+}
+
