@@ -1,0 +1,19 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Firmware for RTL8192SE/RTL8191SE devices"
+HOMEPAGE="https://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware.git"
+DOWNLOADS="${HOMEPAGE}/plain/rtlwifi/${PN}fw.bin"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+
+WORK=${WORKBASE}
+
+src_install() {
+    insinto /${LIBDIR}/firmware/rtlwifi
+
+    doins ${FETCHEDDIR}/${ARCHIVES}
+}
+
