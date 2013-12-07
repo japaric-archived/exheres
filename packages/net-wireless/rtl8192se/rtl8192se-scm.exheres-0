@@ -9,11 +9,11 @@ LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
 
-WORK=${WORKBASE}
+WORK="${WORKBASE}"
 
 src_install() {
     insinto /${LIBDIR}/firmware/rtlwifi
 
-    doins ${FETCHEDDIR}/${ARCHIVES}
+    doins "${FETCHEDDIR}/${ARCHIVES}"
 }
 

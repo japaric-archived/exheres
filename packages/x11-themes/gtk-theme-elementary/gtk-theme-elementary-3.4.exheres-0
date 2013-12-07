@@ -27,7 +27,7 @@ DEPENDENCIES="
         )
 "
 
-WORK=${WORKBASE}/elementary
+WORK="${WORKBASE}"/elementary
 
 src_install() {
     insinto /usr/share/themes/elementary

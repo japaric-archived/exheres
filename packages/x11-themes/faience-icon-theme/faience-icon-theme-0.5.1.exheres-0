@@ -16,7 +16,7 @@ DEPENDENCIES="
         x11-themes/faenza-icon-theme
 "
 
-WORK=${WORKBASE}/${PN}-$(ever range 1-2 ${Pv})
+WORK="${WORKBASE}/${PN}-$(ever range 1-2 ${PV})"
 
 src_install() {
     insinto /usr/share/icons
