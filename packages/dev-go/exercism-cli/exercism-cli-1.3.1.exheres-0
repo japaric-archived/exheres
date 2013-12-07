@@ -1,10 +1,12 @@
 # Copyright 2013 Jorge Aparicio
 # Distributed under the terms of the GNU General Public License v2
 
+GO_SITE="github.com"
 GO_USER=exercism
 GO_PROJECT=cli
+SYSTEM_GOPATH=/usr/share/gocode
 
-require github [ user=${GO_USER} pn=${GO_PROJECT} rev=v${PV} ]
+require github [ user=${GO_USER} pn=${GO_PROJECT} rev="v${PV}" ]
 
 SUMMARY="A Go based command line tool for exercism.io"
 HOMEPAGE="http://exercism.io"
@@ -19,22 +21,30 @@ DEPENDENCIES="
         dev-lang/go[>=1.1.2]
 "
 
-WORK=${IMAGE}usr/share/gocode/src/github.com/${GO_USER}/${GO_PROJECT}
+WORK="${WORKBASE}/src/${GO_SITE}/${GO_USER}/${GO_PROJECT}"
 
 src_unpack() {
-    edo mkdir -p ${WORK}
-    edo pushd ${WORK}
-    edo unpack --tar-option={--strip,1} ${ARCHIVES}
+    edo mkdir -p "${WORK}"
+    edo pushd "${WORK}"
+    edo unpack --tar-option={--strip,1} "${ARCHIVES}"
     edo popd
 }
 
 src_compile() {
-    GOPATH=${IMAGE}usr/share/gocode:/usr/share/gocode edo go build -x
+    GOPATH="${WORKBASE}":${SYSTEM_GOPATH} edo go build -x
 }
 
 src_install() {
-    GOPATH=${IMAGE}usr/share/gocode:/usr/share/gocode edo go install -x
-    edo mkdir -p ${IMAGE}/usr/bin
-    dosym /usr/share/gocode/bin/cli /usr/bin/exercism
+    GOPATH="${WORKBASE}":${SYSTEM_GOPATH} edo go install -x
+    pushd "${WORKBASE}"
+    insinto ${SYSTEM_GOPATH}
+    doins -r bin pkg src
+    popd
+    # make binaries executable
+    edo chmod a+x "${IMAGE}"${SYSTEM_GOPATH}/bin/*
+
+    # symlink installed binary into PATH
+    edo mkdir -p "${IMAGE}"usr/bin
+    dosym ${SYSTEM_GOPATH}/bin/cli /usr/bin/exercism
 }
 
