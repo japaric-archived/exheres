@@ -1,0 +1,19 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require vim-plugin [ vim_version="7.0" ]
+require github [ user=godlygeek ]
+
+SUMMARY="Vim script for text filtering and alignment"
+
+LICENCES="BSD-3"
+SLOT="0"
+PLATFORMS="~amd64"
+
+src_prepare() {
+    # remove unnecessary files
+    edo find -maxdepth 1 -type f -exec rm {} \;
+
+    default
+}
+
