@@ -1,0 +1,26 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require vim-plugin [ vim_version="7.3" vim_options="[python][python_abis:*(-)?]" ]
+SCM_EXTERNAL_REFS="jedi:"
+require github [ user=davidhalter pn="${PN}-vim" ]
+
+SUMMARY="Using the jedi autocompletion library for VIM"
+MYOPTIONS="python_abis: 2.6 2.7 3.2 3.3"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    run:
+        dev-util/jedi[python_abis:*(-)?]
+"
+
+src_install() {
+    local vimfiles=/usr/share/vim/vimfiles
+
+    insinto ${vimfiles}
+    doins -r after autoload doc ftplugin plugin jedi_vim.py
+}
+
