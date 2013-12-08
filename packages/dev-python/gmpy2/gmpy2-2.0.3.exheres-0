@@ -14,7 +14,7 @@ naming conventions to be more consistent and support the additional functionalit
 "
 HOMEPAGE="http://code.google.com/p/gmpy/"
 
-LICENCES="LGPL"
+LICENCES="LGPL-3"
 SLOT="0"
 PLATFORMS="~amd64"
 
