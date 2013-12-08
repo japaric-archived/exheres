@@ -9,6 +9,14 @@ SUMMARY="Next generation completion framework after neocomplcache"
 LICENCES="MIT"
 SLOT="0"
 PLATFORMS="~amd64"
+MYOPTIONS="
+    async [[ description = [ Generate completion cache asynchronously ] ]]
+"
+
+DEPENDENCIES="
+    run:
+        async? ( app-vim/vimproc )
+"
 
 src_prepare() {
     # remove unnecessary files
