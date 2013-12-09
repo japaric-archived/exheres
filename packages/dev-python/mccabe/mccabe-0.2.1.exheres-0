@@ -1,0 +1,18 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require pypi
+require setup-py [ import=setuptools ]
+
+SUMMARY="McCabe checker, plugin for flake8"
+HOMEPAGE="https://github.com/flintwork/${PN}"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    post:
+        dev-python/flake8[python_abis:*(-)?]
+"
+
