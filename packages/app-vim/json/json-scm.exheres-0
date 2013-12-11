@@ -1,0 +1,20 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require vim-plugin [ vim_version="7.3" ]
+require github [ user=elzr pn="vim-${PN}" ]
+
+SUMMARY="A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS)
+warnings, quote concealing."
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+src_prepare() {
+    # remove unnecessary files
+    edo find -maxdepth 1 -type f -exec rm {} \;
+
+    default
+}
+
