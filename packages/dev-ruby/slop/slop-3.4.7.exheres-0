@@ -1,0 +1,12 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="A simple DSL for gathering options and parsing the command line"
+HOMEPAGE="https://github.com/leejarvis/${PN}"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
