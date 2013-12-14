@@ -1,0 +1,12 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="Rainbow extends ruby String class enabling coloring text on ANSI terminals"
+HOMEPAGE="https://github.com/sickill/${PN}"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
