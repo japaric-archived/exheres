@@ -1,0 +1,13 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require setup-py [ import=distutils blacklist=3 ]
+
+SUMMARY="Simple libpulseaudio bindings"
+HOMEPAGE="http://github.com/valodim/python-pulseaudio"
+DOWNLOADS="http://datatomb.de/~valodim/${PNV}.tar.gz"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64"
+
