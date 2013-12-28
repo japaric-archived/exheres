@@ -1,0 +1,18 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require pypi
+require setup-py [ import=setuptools blacklist=3 ]
+
+SUMMARY="PulseAudio Curses Mixer Application"
+
+LICENCES="as-is"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build+run:
+        python_abis:2.6? ( dev-python/argparse )
+        dev-python/libpulseaudio[>=1.1][python_abis:*(-)?]
+"
+
