@@ -21,6 +21,6 @@ src_install() {
     local vimfiles=/usr/share/vim/vimfiles
 
     insinto ${vimfiles}
-    doins -r after autoload doc ftplugin plugin jedi_vim.py
+    doins -r after autoload doc ftplugin plugin initialize.py jedi_vim.py
 }
 
