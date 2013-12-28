@@ -1,0 +1,18 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=falconindy ]
+
+SUMMARY="CLI volume control for PulseAudio"
+
+LICENCES="as-is"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="libnotify"
+
+DEPENDENCIES="
+    build+run:
+        libnotify? ( x11-libs/libnotify )
+        media-sound/pulseaudio
+"
+
