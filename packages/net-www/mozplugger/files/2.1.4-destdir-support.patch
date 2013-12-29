@@ -1,0 +1,58 @@
+Source: Jorge Aparicio
+Upstream: TODO
+Reason: add destdir support
+--- a/Makefile.in	2013-12-29 15:47:57.830123627 -0500
++++ b/Makefile.in	2013-12-29 15:49:04.797807217 -0500
+@@ -266,30 +266,30 @@
+ 	make localinstall BROWSERDIR=.opera
+ 
+ install:
+-	-install -d @bindir@
+-	install mozplugger-helper @bindir@
+-	install mozplugger-controller @bindir@
+-	install mozplugger-linker @bindir@
+-	install mozplugger-update @bindir@
+-	-for a in ${PLUGINDIRS}; do install -d $$a ; done
+-	for a in ${PLUGINDIRS}; do install mozplugger.so $$a ; done
+-	-install -d @sysconfdir@
+-	install $(srcdir)/mozpluggerrc @sysconfdir@
+-	-install -d @mandir@/man7
+-	install $(srcdir)/mozplugger.7 @mandir@/man7/
++	-install -d ${DESTDIR}@bindir@
++	install mozplugger-helper ${DESTDIR}@bindir@
++	install mozplugger-controller ${DESTDIR}@bindir@
++	install mozplugger-linker ${DESTDIR}@bindir@
++	install mozplugger-update ${DESTDIR}@bindir@
++	-for a in ${PLUGINDIRS}; do install -d ${DESTDIR}$$a ; done
++	for a in ${PLUGINDIRS}; do install mozplugger.so ${DESTDIR}$$a ; done
++	-install -d ${DESTDIR}@sysconfdir@
++	install $(srcdir)/mozpluggerrc ${DESTDIR}@sysconfdir@
++	-install -d ${DESTDIR}@mandir@/man7
++	install $(srcdir)/mozplugger.7 ${DESTDIR}@mandir@/man7/
+ 
+ uninstall:
+-	-rm -f @sysconfdir@/mozpluggerrc
+-	-rmdir @sysconfdir@
+-	-for a in ${PLUGINDIRS}; do rm -f $$a/mozplugger.so ; done
+-	-rm -f @mandir@/man7/mozplugger.7
+-	-rmdir @mandir@/man7
+-	-rmdir @mandir@
+-	rm -f @bindir@/mozplugger-helper
+-	rm -f @bindir@/mozplugger-controller
+-	rm -f @bindir@/mozplugger-linker
+-	rm -f @bindir@/mozplugger-update
+-	-rmdir @bindir@
++	-rm -f ${DESTDIR}@sysconfdir@/mozpluggerrc
++	-rmdir ${DESTDIR}@sysconfdir@
++	-for a in ${PLUGINDIRS}; do rm -f ${DESTDIR}$$a/mozplugger.so ; done
++	-rm -f ${DESTDIR}@mandir@/man7/mozplugger.7
++	-rmdir ${DESTDIR}@mandir@/man7
++	-rmdir ${DESTDIR}@mandir@
++	rm -f ${DESTDIR}@bindir@/mozplugger-helper
++	rm -f ${DESTDIR}@bindir@/mozplugger-controller
++	rm -f ${DESTDIR}@bindir@/mozplugger-linker
++	rm -f ${DESTDIR}@bindir@/mozplugger-update
++	-rmdir ${DESTDIR}@bindir@
+ 
+ MOZ_PACKAGE=mozplugger-@PACKAGE_VERSION@
+ 

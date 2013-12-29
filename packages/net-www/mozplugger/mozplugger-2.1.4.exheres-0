@@ -1,0 +1,24 @@
+# Copyright 2013 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Plugin which can show many types of multimedia inside your Mozilla"
+HOMEPAGE="http://mozplugger.mozdev.org/index.html"
+DOWNLOADS="http://mozplugger.mozdev.org/files/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/libX11
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    ${FILES}/${PV}-destdir-support.patch
+)
+
+DEFAULT_SRC_INSTALL_PARAMS=(
+    PLUGINDIRS="/usr/${LIBDIR}/firefox/plugins"
+)
+
