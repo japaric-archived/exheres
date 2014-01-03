@@ -1,13 +1,12 @@
 # Copyright 2013 Jorge Aparicio
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=belluzj ]
-
 SUMMARY="A font family with a great monospaced variant for programmers"
 DESCRIPTION="
 A programming font, designed with functionality in mind, and with some wibbly-wobbly
 handwriting-like fuzziness that makes it unassumingly cool.
 "
+DOWNLOADS="https://github.com/belluzj/${PN}/releases/download/${PV}/CosmicSansNeueMono.zip"
 
 LICENCES="OFL-1.1"
 SLOT="0"
@@ -18,14 +17,11 @@ DEPENDENCIES="
         media-libs/fontconfig
 "
 
-src_compile() {
-    # don't recompile the font
-    :
-}
+WORK="${WORKBASE}"
 
 src_install() {
     insinto /usr/share/fonts/cosmic-sans-neue
-    doins *.ttf
+    doins OTF/*.otf
 }
 
 update_font_cache() {
