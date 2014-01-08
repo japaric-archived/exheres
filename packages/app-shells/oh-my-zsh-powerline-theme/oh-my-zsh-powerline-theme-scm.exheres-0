@@ -7,7 +7,7 @@ SUMMARY="oh-my-zsh Powerline style Theme"
 
 LICENCES="as-is"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 
 DEPENDENCIES="
     build+run:
