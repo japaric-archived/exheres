@@ -8,7 +8,7 @@ SUMMARY="vim plugin to interact to tmux"
 
 LICENCES="as-is"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 
 DEPENDENCIES="
     run:

@@ -8,7 +8,7 @@ SUMMARY="Vim script for text filtering and alignment"
 
 LICENCES="BSD-3"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 
 src_prepare() {
     # remove unnecessary files

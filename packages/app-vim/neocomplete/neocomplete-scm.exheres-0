@@ -8,7 +8,7 @@ SUMMARY="Next generation completion framework after neocomplcache"
 
 LICENCES="MIT"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 MYOPTIONS="
     async [[ description = [ Generate completion cache asynchronously ] ]]
 "

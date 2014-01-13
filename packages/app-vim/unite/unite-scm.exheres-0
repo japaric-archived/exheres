@@ -13,7 +13,7 @@ displayed in the unite window.
 
 LICENCES="MIT"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 MYOPTIONS="
     async [[ description = [ Generate source candidates asynchronously ] ]]
 "

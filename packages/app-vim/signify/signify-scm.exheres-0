@@ -8,7 +8,7 @@ SUMMARY="Show a VCS diff using Vim's sign column"
 
 LICENCES="MIT"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 
 src_prepare() {
     # remove unnecessary files

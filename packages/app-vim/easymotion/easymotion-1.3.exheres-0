@@ -8,7 +8,7 @@ SUMMARY="Vim motions on speed!"
 
 LICENCES="CCPL-Attribution-ShareAlike-3.0"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 
 src_prepare() {
     # remove unnecessary files

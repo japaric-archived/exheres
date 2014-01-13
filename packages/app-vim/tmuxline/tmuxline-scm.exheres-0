@@ -8,7 +8,7 @@ SUMMARY="Simple tmux statusline generator with support for powerline symbols and
 
 LICENCES="MIT"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 
 DEPENDENCIES="
     run:

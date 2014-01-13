@@ -8,7 +8,7 @@ SUMMARY="Vim support for Rust file detection and syntax highlighting"
 
 LICENCES="MIT"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 
 src_prepare() {
     # remove unnecessary files

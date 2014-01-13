@@ -8,7 +8,7 @@ SUMMARY="A vim plugin to display the indention levels with thin vertical lines"
 
 LICENCES="as-is"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 
 src_prepare() {
     # remove unnecessary files

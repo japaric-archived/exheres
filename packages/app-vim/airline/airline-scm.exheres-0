@@ -8,7 +8,7 @@ SUMMARY="lean & mean status/tabline for vim that's light as air"
 
 LICENCES="MIT"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 
 src_prepare() {
     # remove unnecesary files
