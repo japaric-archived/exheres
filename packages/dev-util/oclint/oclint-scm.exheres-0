@@ -1,0 +1,48 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=${PN} ]
+
+SUMMARY="C/C++/Objective-C static code analyzer"
+HOMEPAGE="http://oclint.org"
+
+LICENCES="BSD-3"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build:
+        dev-lang/python:*
+        sys-devel/cmake
+    build+run:
+        dev-lang/clang[>=3.5]
+"
+
+src_prepare() {
+    default
+
+    # upstream script looks for the llvm license in the wrong place (plus we already have it
+    # installed), skip this step and we'll handle license installation manually.
+    edo sed -i '/^install_licenses()/d' oclint-scripts/bundle
+}
+
+src_compile() {
+    pushd oclint-scripts
+    edo ./build -llvm-root=/usr -release
+    popd
+}
+
+src_install() {
+    pushd oclint-scripts
+    edo ./bundle -llvm-root=/usr -release
+    popd
+
+    # manual install
+    exeinto /usr/bin
+    doexe build/oclint-release/bin/*
+
+    insinto /usr/${LIBDIR}/oclint
+    doins oclint-core/LICENSE
+    doins -r build/oclint-release/lib/oclint/*
+}
+
