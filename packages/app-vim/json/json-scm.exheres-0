@@ -4,8 +4,11 @@
 require vim-plugin [ vim_version="7.3" ]
 require github [ user=elzr pn="vim-${PN}" ]
 
-SUMMARY="A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS)
-warnings, quote concealing."
+SUMMARY="A better JSON for Vim"
+DESCRIPTION="
+A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific
+(non-JS) warnings, quote concealing.
+"
 
 LICENCES="MIT"
 SLOT="0"
