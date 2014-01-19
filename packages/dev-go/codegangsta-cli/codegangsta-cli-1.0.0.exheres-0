@@ -20,7 +20,8 @@ SLOT="0"
 PLATFORMS="~amd64"
 
 DEPENDENCIES="
-    dev-lang/go[>=1.1]
+    build+run:
+        dev-lang/go[>=1.1]
 "
 
 WORK="${WORKBASE}/src/${GO_SITE}/${GO_USER}/${GO_PROJECT}"
