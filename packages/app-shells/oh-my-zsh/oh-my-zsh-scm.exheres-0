@@ -10,7 +10,8 @@ SLOT="0"
 PLATFORMS="~amd64 ~arm"
 
 DEPENDENCIES="
-    app-shells/zsh
+    run:
+        app-shells/zsh
 "
 
 src_configure() {
