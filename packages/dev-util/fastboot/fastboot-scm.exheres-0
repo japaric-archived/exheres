@@ -1,0 +1,41 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="http://android.googlesource.com/platform/system/core.git"
+SCM_CHECKOUT_TO="android-system-core"
+
+SCM_extras_REPOSITORY="http://android.googlesource.com/platform/system/extras.git"
+SCM_extras_CHECKOUT_TO="android-system-extras"
+SCM_libselinux_REPOSITORY="http://android.googlesource.com/platform/external/libselinux.git"
+SCM_libselinux_CHECKOUT_TO="android-external-libselinux"
+
+SCM_SECONDARY_REPOSITORIES="extras libselinux"
+
+require scm-git
+
+SUMMARY="fastboot"
+HOMEPAGE="https://android.googlesource.com/platform/system/core"
+
+LICENCES="Apache-2.0"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build+run:
+        sys-libs/zlib
+"
+
+src_compile() {
+    pushd fastboot
+
+    edo cp "${FILES}"/Makefile .
+    emake
+
+    popd
+}
+
+src_install() {
+    exeinto /usr/bin
+    doexe fastboot/fastboot
+}
+
