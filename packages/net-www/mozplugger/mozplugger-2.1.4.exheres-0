@@ -15,7 +15,7 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=(
-    ${FILES}/${PV}-destdir-support.patch
+    "${FILES}"/${PV}-destdir-support.patch
 )
 
 DEFAULT_SRC_INSTALL_PARAMS=(
