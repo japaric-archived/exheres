@@ -12,7 +12,6 @@ PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:
-        python_abis:2.6? ( dev-python/argparse )
         dev-python/libpulseaudio[>=1.1][python_abis:*(-)?]
 "
 
