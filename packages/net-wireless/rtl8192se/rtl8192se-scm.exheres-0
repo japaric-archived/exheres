@@ -14,6 +14,6 @@ WORK="${WORKBASE}"
 src_install() {
     insinto /${LIBDIR}/firmware/rtlwifi
 
-    doins "${FETCHEDDIR}/${ARCHIVES}"
+    doins "${FETCHEDDIR}"/${ARCHIVES}
 }
 
