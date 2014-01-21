@@ -6,7 +6,7 @@ DESCRIPTION="
 A programming font, designed with functionality in mind, and with some wibbly-wobbly
 handwriting-like fuzziness that makes it unassumingly cool.
 "
-DOWNLOADS="https://github.com/belluzj/${PN}/releases/download/${PV}/CosmicSansNeueMono.zip"
+DOWNLOADS="https://github.com/belluzj/${PN}/releases/download/v${PV}/FantasqueSansMono.zip"
 
 LICENCES="OFL-1.1"
 SLOT="0"
@@ -20,7 +20,7 @@ DEPENDENCIES="
 WORK="${WORKBASE}"
 
 src_install() {
-    insinto /usr/share/fonts/cosmic-sans-neue
+    insinto /usr/share/fonts/fantasque-sans
     doins OTF/*.otf
 }
 
