@@ -44,14 +44,14 @@ DEPENDENCIES="
         )
         clang? ( dev-lang/clang[>=3.3] )
     run:
-        dev-python/bottle
-        dev-python/futures
-        dev-python/python-frozendict
-        dev-python/requests
-        dev-python/requests-futures
-        dev-python/retries
-        dev-python/waitress
-        dev-util/jedi [[ description = [ autocompletion for python ] ]]
+        dev-python/bottle[python_abis:*(-)?]
+        dev-python/futures[python_abis:*(-)?]
+        dev-python/python-frozendict[python_abis:*(-)?]
+        dev-python/requests[python_abis:*(-)?]
+        dev-python/requests-futures[python_abis:*(-)?]
+        dev-python/retries[python_abis:*(-)?]
+        dev-python/waitress[python_abis:*(-)?]
+        dev-util/jedi[python_abis:*(-)?] [[ description = [ autocompletion for python ] ]]
 "
 #        sharp? (
 #            dev-lang/mono
@@ -81,6 +81,8 @@ src_install() {
     doins -r autoload doc plugin
     insinto /usr/share/vim/vimfiles/python
     doins python/ycm_client_support.so python/ycm_core.so
+    insinto /usr/share/vim/vimfiles/python/ycm/server
+    doins python/ycm/server/default_settings.json
     dodoc README.md CONTRIBUTING.md
 
     insinto $(python_get_sitedir)
@@ -91,6 +93,7 @@ src_install() {
         -e '/SetUpPythonPath()/d' \
         "${IMAGE}"$(python_get_sitedir)/ycm/server/ycmd.py
     edo sed -i -e '/utils.AddThirdPartyFoldersToSysPath()/d' \
+        -e "/exe 'python sys.path.insert/d" \
         "${IMAGE}"usr/share/vim/vimfiles/autoload/youcompleteme.vim
 }
 
