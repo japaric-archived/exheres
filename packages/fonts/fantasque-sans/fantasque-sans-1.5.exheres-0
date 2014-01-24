@@ -6,7 +6,9 @@ DESCRIPTION="
 A programming font, designed with functionality in mind, and with some wibbly-wobbly
 handwriting-like fuzziness that makes it unassumingly cool.
 "
-DOWNLOADS="https://github.com/belluzj/${PN}/releases/download/v${PV}/FantasqueSansMono.zip"
+DOWNLOADS="
+https://github.com/belluzj/${PN}/releases/download/${PV}/FantasqueSansMono.zip -> ${PNV}.zip
+"
 
 LICENCES="OFL-1.1"
 SLOT="0"
