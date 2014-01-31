@@ -1,0 +1,16 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require setup-py [ import=setuptools blacklist="2 3.1 3.2" ]
+require github [ user=japaric ]
+
+SUMMARY="Create exheres using npm online metadata"
+HOMEPAGE="https://github.com/japaric/${PN}"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
