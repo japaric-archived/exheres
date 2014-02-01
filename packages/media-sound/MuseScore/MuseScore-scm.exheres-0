@@ -1,0 +1,52 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=musescore ]
+require cmake [ cmake_minimum_version='2.8.7' api=2 ]
+require flag-o-matic
+
+SUMMARY="Create, play and print beautiful sheet music"
+HOMEPAGE="http://${PN}.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        x11-libs/qttools:5
+    build+run:
+        media-libs/libvorbis
+        media-sound/lame
+        media-sound/pulseaudio
+        x11-libs/qtbase:5
+        x11-libs/qtsvg:5
+        x11-libs/qtwebkit:5
+        x11-libs/qtxmlpatterns:5
+    run:
+        media-libs/libsndfile[vorbis]
+        media-libs/portaudio
+"
+
+CMAKE_SRC_CONFIGURE_PARAMS=(
+    -DBUILD_JACK:BOOL=FALSE
+)
+
+src_prepare() {
+    # Can't precompile headers because of Qt build configuration
+    edo sed -i -e 's:\(BUILD_PCH \)true:\1false:' "${WORKBASE}"/${PNV}/CMakeLists.txt
+
+    cmake_src_prepare
+
+    # for some reason cmake doesn't add this to the makefile, when it should
+    append-flags '-std=gnu++11'
+}
+
+src_compile() {
+    # build linguas
+    emake lrelease -j1
+
+    emake
+}
+
