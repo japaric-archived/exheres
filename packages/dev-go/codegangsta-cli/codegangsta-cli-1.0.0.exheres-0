@@ -29,7 +29,7 @@ WORK="${WORKBASE}/src/${GO_SITE}/${GO_USER}/${GO_PROJECT}"
 src_unpack() {
     edo mkdir -p "${WORK}"
     edo pushd "${WORK}"
-    edo unpack --tar-option={--strip,1} "${ARCHIVES}"
+    edo unpack --tar-option={--strip,1} ${ARCHIVES}
     edo popd
 }
 
