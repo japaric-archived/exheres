@@ -1,0 +1,22 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require vim-plugin [ vim_version='7.3' ]
+require github [ user=w0ng pn=vim-${PN} ]
+
+SUMMARY="A dark colour scheme for Vim & gVim"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+src_prepare() {
+    # remove unnecesary files
+    edo find -maxdepth 1 -type f -exec rm {} \;
+
+    default
+}
+
