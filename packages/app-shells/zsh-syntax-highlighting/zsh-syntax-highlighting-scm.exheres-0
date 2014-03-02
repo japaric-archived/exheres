@@ -1,0 +1,25 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user='zsh-users' ]
+
+SUMMARY="Fish shell like syntax highlighting for Zsh"
+
+LICENCES="BSD-3"
+SLOT="0"
+PLATFORMS="~amd64 ~arm ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    run:
+        app-shells/oh-my-zsh
+        app-shells/zsh[>=4.3.17]
+"
+
+src_install() {
+    insinto /usr/share/oh-my-zsh/plugins/${PN}
+
+    doins *.zsh
+    doins -r highlighters
+}
+
