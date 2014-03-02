@@ -1,0 +1,23 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=GGLucas ]
+
+SUMMARY="an ncurses reddit browser and monitor"
+HOMEPAGE="http://${PN}.glacicle.org/"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    run:
+        dev-lang/python:*[>=3.0.0]
+"
+
+src_install() {
+    dobin cortex
+    doman cortex.1
+}
+
