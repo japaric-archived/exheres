@@ -1,0 +1,29 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+export_exlib_phases src_install pkg_postinst pkg_postinst
+
+DEPENDENCIES="
+    build:
+        media-libs/fontconfig
+"
+
+update_font_cache() {
+    ebegin "Updating system-wide font cache"
+        fc-cache --system-only --force
+    eend
+}
+
+simple-font_src_install() {
+    insinto /usr/share/fonts/${PN}
+    doins ${FONT_FILES[@]}
+}
+
+simple-font_pkg_postinst() {
+    update_font_cache
+}
+
+simple-font_pkg_postrm() {
+    update_font_cache
+}
+
