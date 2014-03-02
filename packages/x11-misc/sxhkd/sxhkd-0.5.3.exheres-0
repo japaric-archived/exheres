@@ -1,0 +1,33 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=baskerville ]
+
+SUMMARY="Simple X hotkey daemon"
+
+LICENCES="BSD-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="examples"
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/libxcb
+        x11-utils/xcb-util-keysyms
+"
+
+DEFAULT_SRC_INSTALL_PARAMS=(
+    DESTDIR="${IMAGE}"
+    MANPREFIX=/usr/share/man
+    PREFIX=/usr/$(exhost --target)
+)
+
+src_install() {
+    emake -j1 install ${DEFAULT_SRC_INSTALL_PARAMS[@]}
+
+    if option examples; then
+        insinto /usr/share/doc/${PNV}
+        doins -r examples
+    fi
+}
+
