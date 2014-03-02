@@ -1,6 +1,12 @@
 # Copyright 2013 Jorge Aparicio
 # Distributed under the terms of the GNU General Public License v2
 
+FONT_FILES=(
+    OTF/*.otf
+)
+
+require simple-font
+
 SUMMARY="A font family with a great monospaced variant for programmers"
 DESCRIPTION="
 A programming font, designed with functionality in mind, and with some wibbly-wobbly
@@ -14,29 +20,5 @@ LICENCES="OFL-1.1"
 SLOT="0"
 PLATFORMS="~amd64"
 
-DEPENDENCIES="
-    build:
-        media-libs/fontconfig
-"
-
 WORK="${WORKBASE}"
-
-src_install() {
-    insinto /usr/share/fonts/fantasque-sans
-    doins OTF/*.otf
-}
-
-update_font_cache() {
-    ebegin "Updating system-wide font cache"
-        fc-cache --system-only --force
-    eend
-}
-
-pkg_postinst() {
-    update_font_cache
-}
-
-pkg_postrm() {
-    update_font_cache
-}
 
