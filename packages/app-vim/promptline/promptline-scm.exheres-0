@@ -11,7 +11,10 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
-DEPENDENCIES=""
+DEPENDENCIES="
+    run:
+        app-vim/airline
+"
 
 src_prepare() {
     # remove unnecessary files
