@@ -1,0 +1,18 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+FONT_FILES=(
+    *.pcf
+    *.psfu
+)
+
+require simple-font
+require sourceforge [ suffix='tar.gz' ]
+
+SUMMARY="Monospaced font based on terminus and tamsyn"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
