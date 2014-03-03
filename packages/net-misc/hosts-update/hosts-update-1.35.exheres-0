@@ -1,0 +1,25 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=graysky2 tag=v${PV} ]
+
+SUMMARY="Updates /etc/hosts with the mvps blocklist"
+
+LICENCES="as-is"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    run:
+        net-misc/curl
+"
+
+src_prepare() {
+    local host=$(exhost --target)
+
+    default
+
+    sed -e 's:\(BINDIR = \)$(PREFIX)\(/bin\):\1/usr/'"${host}"'\2:' -i Makefile
+}
+
