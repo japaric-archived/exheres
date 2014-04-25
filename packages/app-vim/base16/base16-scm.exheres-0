@@ -1,0 +1,19 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require vim-plugin
+require github [ user=chriskempson pn="${PN}-vim" ]
+
+SUMMARY="Color schemes for hackers"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64 ~arm"
+
+src_prepare() {
+    # remove unnecesary files
+    edo find -maxdepth 1 -type f -exec rm {} \;
+
+    default
+}
+
