@@ -4,7 +4,7 @@
 require vim-plugin
 require github [ user=christoomey pn="vim-${PN}" ]
 
-SUMMARY="lean & mean status/tabline for vim that's light as air"
+SUMMARY="Seamless navigation between tmux panes and vim splits"
 
 LICENCES="MIT"
 SLOT="0"
