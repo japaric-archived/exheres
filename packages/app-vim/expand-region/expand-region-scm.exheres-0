@@ -4,7 +4,7 @@
 require vim-plugin
 require github [ user=terryma pn="vim-${PN}" ]
 
-SUMMARY="lean & mean status/tabline for vim that's light as air"
+SUMMARY="Visually select larger regions using the same key combination"
 
 LICENCES="MIT"
 SLOT="0"
