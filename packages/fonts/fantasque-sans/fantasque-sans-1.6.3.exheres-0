@@ -13,7 +13,7 @@ A programming font, designed with functionality in mind, and with some wibbly-wo
 handwriting-like fuzziness that makes it unassumingly cool.
 "
 DOWNLOADS="
-https://github.com/belluzj/${PN}/releases/download/v${PV}/FantasqueSansMono.zip -> ${PNV}.zip
+https://github.com/belluzj/${PN}/releases/download/v${PV}/FantasqueSansMono.tar.gz -> ${PNV}.tar.gz
 "
 
 LICENCES="OFL-1.1"
