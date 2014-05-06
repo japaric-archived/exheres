@@ -1,4 +1,4 @@
-# Source: https://aur.archlinux.org/packages/android-tools
+# Source: https://projects.archlinux.org/svntogit/community.git/tree/trunk/fastbootMakefile?h=packages/android-tools
 # Upstream: https://android.googlesource.com/platform/system/core/+/master/fastboot/Android.mk
 # Reason: simplify upstream makefile to build only fastboot
 SRCS+=bootimg.c
@@ -6,7 +6,6 @@ SRCS+=engine.c
 SRCS+=fastboot.c
 SRCS+=protocol.c
 SRCS+=usb_linux.c
-SRCS+=util.c
 SRCS+=util_linux.c
 
 VPATH+= ../libsparse
@@ -26,7 +25,6 @@ SRCS+= allocate.c
 SRCS+= contents.c
 SRCS+= crc16.c
 SRCS+= ext4_utils.c
-SRCS+= ext4fixup.c
 SRCS+= extent.c
 SRCS+= indirect.c
 SRCS+= make_ext4fs.c
@@ -43,7 +41,6 @@ SRCS+= label.c
 SRCS+= label_android_property.c
 SRCS+= label_file.c
 
-CPPFLAGS+= -std=gnu99
 CPPFLAGS+= -I../include
 CPPFLAGS+= -I../libsparse/include
 CPPFLAGS+= -I../mkbootimg
