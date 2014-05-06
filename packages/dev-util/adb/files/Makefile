@@ -1,4 +1,4 @@
-# Source: https://aur.archlinux.org/packages/android-tools
+# Source: https://projects.archlinux.org/svntogit/community.git/tree/trunk/adbMakefile?h=packages/android-tools
 # Upstream: https://android.googlesource.com/platform/system/core/+/master/adb/Android.mk
 # Reason: simplify upstream makefile to build only adb
 SRCS+= adb.c

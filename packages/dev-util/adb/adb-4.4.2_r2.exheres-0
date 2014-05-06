@@ -1,6 +1,7 @@
 # Copyright 2014 Jorge Aparicio
 # Distributed under the terms of the GNU General Public License v2
 
+SCM_TAG="android-${PV}"
 SCM_REPOSITORY="http://android.googlesource.com/platform/system/core.git"
 SCM_CHECKOUT_TO="android-system-core"
 
