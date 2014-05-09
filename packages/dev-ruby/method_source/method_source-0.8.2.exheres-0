@@ -1,0 +1,14 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="Retrieve the sourcecode for a method"
+HOMEPAGE="http://banisterfiend.wordpress.com"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES=""
+
