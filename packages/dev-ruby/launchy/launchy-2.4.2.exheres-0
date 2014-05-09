@@ -1,0 +1,17 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="Launchy is helper class for launching cross-platform applications"
+HOMEPAGE="http://github.com/copiousfreetime/${PN}"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/addressable[~>2.3]
+"
+
