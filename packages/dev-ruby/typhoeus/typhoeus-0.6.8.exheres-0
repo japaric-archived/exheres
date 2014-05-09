@@ -1,0 +1,17 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="Run HTTP requests in parallel"
+HOMEPAGE="https://github.com/${PN}/${PN}"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/ethon[>=0.7.0]
+"
+
