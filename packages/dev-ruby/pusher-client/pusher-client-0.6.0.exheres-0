@@ -1,0 +1,18 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="Client for consuming WebSockets from http://pusher.com"
+HOMEPAGE="http://github.com/pusher/pusher-ruby-client"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/json
+        dev-ruby/websocket[~>1.0]
+"
+
