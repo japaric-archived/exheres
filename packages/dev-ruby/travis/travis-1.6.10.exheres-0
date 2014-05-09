@@ -1,0 +1,26 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="CLI and Ruby client library for Travis CI"
+HOMEPAGE="https://github.com/${PN}-ci/${PN}"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/addressable[~>2.3]
+        dev-ruby/backports
+        dev-ruby/faraday[~>0.9]
+        dev-ruby/faraday_middleware[~>0.9]
+        dev-ruby/gh[~>0.13]
+        dev-ruby/highline[~>1.6]
+        dev-ruby/launchy[~>2.1]
+        dev-ruby/pry[~>0.9]
+        dev-ruby/pusher-client[~>0.4]
+        dev-ruby/typhoeus[~>0.6]
+"
+
