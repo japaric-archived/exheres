@@ -1,0 +1,14 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="Universal Ruby library to handle WebSocket protocol"
+HOMEPAGE="http://github.com/imanel/${PN}-ruby"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES=""
+
