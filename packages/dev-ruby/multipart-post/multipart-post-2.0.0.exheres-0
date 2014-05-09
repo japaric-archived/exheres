@@ -1,0 +1,14 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="Use with Net::HTTP to do multipart form posts"
+HOMEPAGE="https://github.com/nicksieger/${PN}"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES=""
+
