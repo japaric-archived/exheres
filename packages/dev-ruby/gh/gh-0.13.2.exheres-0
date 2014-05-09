@@ -1,0 +1,22 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="Multi-layer client for the github api v3"
+HOMEPAGE="http://${PN}.rkh.im"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build+run:
+        dev-ruby/addressable
+        dev-ruby/backports
+        dev-ruby/faraday[~>0.8]
+        dev-ruby/multi_json[~>1.0]
+        dev-ruby/net-http-persistent[>=2.7]
+        dev-ruby/net-http-pipeline
+"
+
