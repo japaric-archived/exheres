@@ -21,6 +21,6 @@ DEPENDENCIES="
         dev-ruby/launchy[~>2.1]
         dev-ruby/pry[~>0.9]
         dev-ruby/pusher-client[~>0.4]
-        dev-ruby/typhoeus[~>0.6]
+        dev-ruby/typhoeus[~>0.6&>=0.6.8]
 "
 
