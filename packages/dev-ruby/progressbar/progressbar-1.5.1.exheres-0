@@ -1,0 +1,14 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem [ pn=ruby-${PN} ]
+
+SUMMARY="Extremely flexible text progress bar library"
+HOMEPAGE="https://github.com/jfelchner/ruby-${PN}"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES=""
+
