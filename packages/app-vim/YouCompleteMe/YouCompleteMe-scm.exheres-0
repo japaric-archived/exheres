@@ -2,18 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_EXTERNAL_REFS="
-    python/ycm/completers/cs/OmniSharpServer:
-    third_party/argparse:
-    third_party/bottle:
-    third_party/frozendict:
-    third_party/jedi:
     third_party/requests:
     third_party/requests-futures:
-    third_party/waitress:
+    third_party/ycmd:
 "
-CMAKE_SOURCE="${WORK}/cpp"
 require python [ blacklist=3 multibuild=false ]
-require github [ user=Valloric ]  cmake [ api=2 out_of_source=false ]
+require github [ user=Valloric ]
 
 
 SUMMARY="Fast, as-you-type, fuzzy-search code completion engine"
@@ -30,70 +24,26 @@ completions for many other languages (Ruby, PHP etc.).
 LICENCES="GPL-3"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="
-    clang [[ description = [ clang completion for C/C++ ] ]]
-"
-#    sharp [[ description = [ omnisharp completion for C# ] ]]
-
+MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
         || (
-        app-editors/gvim[python][>=7.3.584][python_abis:*(-)?]
+            app-editors/gvim[python][>=7.3.584][python_abis:*(-)?]
             app-editors/vim[python][>=7.3.584][python_abis:*(-)?]
         )
-        clang? ( dev-lang/clang[>=3.3] )
     run:
-        dev-python/bottle[python_abis:*(-)?]
-        dev-python/futures[python_abis:*(-)?]
-        dev-python/python-frozendict[python_abis:*(-)?]
+        app-vim/ycmd[python_abis:*(-)?]
         dev-python/requests[python_abis:*(-)?]
         dev-python/requests-futures[python_abis:*(-)?]
-        dev-python/retries[python_abis:*(-)?]
-        dev-python/waitress[python_abis:*(-)?]
-        dev-util/jedi[python_abis:*(-)?] [[ description = [ autocompletion for python ] ]]
 "
-#        sharp? (
-#            dev-lang/mono
-#            dev-util/OmniSharpServer
-#        )
-#"
 
-BUGS_TO="pyromaniac@thwitt.de"
-
-CMAKE_SRC_CONFIGURE_OPTIONS=(
-    "clang USE_CLANG_COMPLETER"
-    "clang USE_SYSTEM_LIBCLANG"
-)
-
-src_compile() {
-    default
-
-#    if option sharp; then
-#        edo pushd "${WORK}"/python/ycm/completers/cs/OmniSharpServer
-#        edo xbuild
-#        edo popd
-#    fi
-}
+BUGS_TO="pyromaniac@exherbo.org"
 
 src_install() {
+    sed -i -e "/let s:ycmd_folder_path/s#s:script_folder_path . '/../third_party/ycmd/'#'$(python_get_sitedir)/ycmd/'#" plugin/youcompleteme.vim
+
     insinto /usr/share/vim/vimfiles
-    doins -r autoload doc plugin
-    insinto /usr/share/vim/vimfiles/python
-    doins python/ycm_client_support.so python/ycm_core.so
-    insinto /usr/share/vim/vimfiles/python/ycm/server
-    doins python/ycm/server/default_settings.json
-    dodoc README.md CONTRIBUTING.md
-
-    insinto $(python_get_sitedir)
-    doins -r python/*
-
-    edo sed -i -e 's:/usr/bin/env python:/usr/bin/env python2:' \
-        -e '/from server_utils import SetUpPythonPath/d' \
-        -e '/SetUpPythonPath()/d' \
-        "${IMAGE}"$(python_get_sitedir)/ycm/server/ycmd.py
-    edo sed -i -e '/utils.AddThirdPartyFoldersToSysPath()/d' \
-        -e "/exe 'python sys.path.insert/d" \
-        "${IMAGE}"usr/share/vim/vimfiles/autoload/youcompleteme.vim
+    doins -r autoload doc plugin python
 }
 
