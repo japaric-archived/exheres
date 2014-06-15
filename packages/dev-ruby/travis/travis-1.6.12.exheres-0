@@ -15,11 +15,11 @@ DEPENDENCIES="
         dev-ruby/addressable[~>2.3]
         dev-ruby/backports
         dev-ruby/faraday[~>0.9]
-        dev-ruby/faraday_middleware[~>0.9]
+        dev-ruby/faraday_middleware[>=0.9.1&~>0.9]
         dev-ruby/gh[~>0.13]
         dev-ruby/highline[~>1.6]
         dev-ruby/launchy[~>2.1]
-        dev-ruby/pry[~>0.9]
+        dev-ruby/pry[~>0.9&<0.10]
         dev-ruby/pusher-client[~>0.4]
         dev-ruby/typhoeus[~>0.6&>=0.6.8]
 "
