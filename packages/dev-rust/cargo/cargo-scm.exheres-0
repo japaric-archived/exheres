@@ -1,0 +1,38 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_SECONDARY_REPOSITORIES="
+    hamcrest_rust
+    hammer_rs
+    toml_rs
+"
+
+SCM_hamcrest_rust_REPOSITORY="https://github.com/carllerche/hamcrest-rust.git"
+SCM_hammer_rs_REPOSITORY="https://github.com/wycats/hammer.rs.git"
+SCM_toml_rs_REPOSITORY="https://github.com/alexcrichton/toml-rs.git"
+
+SCM_EXTERNAL_REFS="
+    libs/hamcrest-rust:hamcrest_rust
+    libs/hammer.rs:hammer_rs
+    libs/toml-rs:toml_rs
+"
+
+require github [ user="rust-lang" ]
+
+SUMMARY="The Rust package manager"
+HOMEPAGE="http://crates.io"
+
+LICENCES="Apache-2.0 MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/rust[=scm]
+"
+
+DEFAULT_SRC_INSTALL_PARAMS=(
+    PREFIX=/usr
+)
+
