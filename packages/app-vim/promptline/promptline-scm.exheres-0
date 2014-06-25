@@ -8,7 +8,7 @@ SUMMARY="Generate a fast shell prompt with powerline symbols and airline colors"
 
 LICENCES="MIT"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 MYOPTIONS=""
 
 DEPENDENCIES="
