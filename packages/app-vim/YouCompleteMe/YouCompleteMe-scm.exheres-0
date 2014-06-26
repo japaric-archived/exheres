@@ -38,7 +38,7 @@ completions for many other languages (Ruby, PHP etc.).
 
 LICENCES="GPL-3"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 MYOPTIONS="
     clang [[ description = [ clang completion for C/C++ ] ]]
 "
