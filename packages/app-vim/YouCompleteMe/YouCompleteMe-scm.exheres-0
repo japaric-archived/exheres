@@ -1,14 +1,29 @@
 # Copyright 2013 Thomas Witt
+# Copyright 2014 Jorge Aparicio
 # Distributed under the terms of the GNU General Public License v2
 
+SCM_SECONDARY_REPOSITORIES="ycmd"
 SCM_EXTERNAL_REFS="
+    third_party/ycmd:ycmd
     third_party/requests:
     third_party/requests-futures:
-    third_party/ycmd:
 "
-require python [ blacklist=3 multibuild=false ]
+
+SCM_ycmd_REPOSITORY="https://github.com/Valloric/ycmd.git"
+SCM_ycmd_EXTERNAL_REFS="
+    third_party/OmniSharpServer:
+    third_party/argparse:
+    third_party/bottle:
+    third_party/frozendict:
+    third_party/jedi:
+    third_party/waitress:
+"
 require github [ user=Valloric ]
 
+CMAKE_SOURCE="${WORK}/third_party/ycmd/cpp"
+require cmake [ api=2 out_of_source=false ]
+
+require python [ blacklist=3 multibuild=false ]
 
 SUMMARY="Fast, as-you-type, fuzzy-search code completion engine"
 DESCRIPTION="
@@ -24,7 +39,9 @@ completions for many other languages (Ruby, PHP etc.).
 LICENCES="GPL-3"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS=""
+MYOPTIONS="
+    clang [[ description = [ clang completion for C/C++ ] ]]
+"
 
 DEPENDENCIES="
     build+run:
@@ -32,18 +49,30 @@ DEPENDENCIES="
             app-editors/gvim[python][>=7.3.584][python_abis:*(-)?]
             app-editors/vim[python][>=7.3.584][python_abis:*(-)?]
         )
+        clang? ( dev-lang/clang[>=3.3] )
     run:
-        app-vim/ycmd[python_abis:*(-)?]
+        dev-python/bottle[python_abis:*(-)?]
+        dev-python/futures[python_abis:*(-)?]
+        dev-python/python-frozendict[python_abis:*(-)?]
         dev-python/requests[python_abis:*(-)?]
         dev-python/requests-futures[python_abis:*(-)?]
+        dev-python/retries[python_abis:*(-)?]
+        dev-python/waitress[python_abis:*(-)?]
+        dev-util/jedi[python_abis:*(-)?] [[ description = [ autocompletion for python ] ]]
 "
 
-BUGS_TO="pyromaniac@exherbo.org"
+BUGS_TO="japaric@linux.com"
+
+CMAKE_SRC_CONFIGURE_OPTIONS=(
+    "clang USE_CLANG_COMPLETER"
+    "clang USE_SYSTEM_LIBCLANG"
+)
 
 src_install() {
-    sed -i -e "/let s:ycmd_folder_path/s#s:script_folder_path . '/../third_party/ycmd/'#'$(python_get_sitedir)/ycmd/'#" plugin/youcompleteme.vim
-
     insinto /usr/share/vim/vimfiles
     doins -r autoload doc plugin python
+    insinto /usr/share/vim/vimfiles/third_party/ycmd
+    doins -r third_party/ycmd/ycm{{_client_support,_core}.so,d}
+    dodoc README.md CONTRIBUTING.md
 }
 
