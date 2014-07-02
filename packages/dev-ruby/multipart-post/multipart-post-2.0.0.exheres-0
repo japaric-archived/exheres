@@ -8,7 +8,7 @@ HOMEPAGE="https://github.com/nicksieger/${PN}"
 
 LICENCES="MIT"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 
 DEPENDENCIES=""
 
