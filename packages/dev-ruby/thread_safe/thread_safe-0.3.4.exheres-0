@@ -1,0 +1,15 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="Thread-safe collections and utilities for Ruby"
+HOMEPAGE="https://github.com/headius/${PN}"
+
+LICENCES="Apache-2.0"
+SLOT="0"
+PLATFORMS="~amd64 ~arm"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
