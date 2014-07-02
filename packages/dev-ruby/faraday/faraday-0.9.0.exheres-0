@@ -8,7 +8,7 @@ HOMEPAGE="https://github.com/lostisland/${PN}"
 
 LICENCES="MIT"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~arm"
 
 DEPENDENCIES="
     build+run:
