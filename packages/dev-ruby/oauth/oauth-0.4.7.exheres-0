@@ -1,0 +1,15 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="OAuth Core Ruby implementation"
+HOMEPAGE="https://github.com/${PN}-xx/${PN}-ruby"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64 ~arm"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
