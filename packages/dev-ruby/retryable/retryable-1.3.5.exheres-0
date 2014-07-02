@@ -1,0 +1,15 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+require gem
+
+SUMMARY="Kernel#retryable, allow for retrying of code blocks."
+HOMEPAGE="http://github.com/nfedyashev/${PN}"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64 ~arm"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
