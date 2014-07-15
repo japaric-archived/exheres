@@ -36,3 +36,12 @@ DEFAULT_SRC_INSTALL_PARAMS=(
     PREFIX=/usr
 )
 
+
+src_install() {
+    default
+
+    if [[ ${LIBDIR} == lib64 ]]; then
+        edo mv "${IMAGE}"/usr/lib "${IMAGE}"/usr/lib64
+    fi
+}
+
