@@ -1,0 +1,31 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_SECONDARY_REPOSITORIES="tmpdir"
+
+SCM_tmpdir_CHECKOUT_TO="tmpdir"
+SCM_tmpdir_REPOSITORY="git://github.com/japaric/tmpdir.rs"
+
+require github [ user=japaric ]
+
+SUMMARY="A rustc wrapper that implements the --run flag"
+
+LICENCES="|| ( Apache-2.0 MIT )"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-lang/rust[=scm]
+"
+
+src_compile() {
+    edo rustc -O --crate-type=lib --crate-name tmpdir ../tmpdir/src/lib.rs
+    edo rustc -O -L . --crate-name rustic src/main.rs
+}
+
+src_install() {
+    dobin rustic
+}
+
