@@ -11,16 +11,14 @@ SCM_hamcrest_rust_REPOSITORY="https://github.com/carllerche/hamcrest-rust.git"
 SCM_hammer_rs_REPOSITORY="https://github.com/wycats/hammer.rs.git"
 SCM_toml_rs_REPOSITORY="https://github.com/alexcrichton/toml-rs.git"
 
-SCM_EXTERNAL_REFS="
-    libs/hamcrest-rust:hamcrest_rust
-    libs/hammer.rs:hammer_rs
-    libs/toml-rs:toml_rs
-"
+SNAPSHOT_DATE="2014-07-26"
 
 require github [ user="rust-lang" ]
 
 SUMMARY="The Rust package manager"
 HOMEPAGE="http://crates.io"
+SNAPSHOT="${PN}-nightly-linux.tar.gz"
+DOWNLOADS="http://static.rust-lang.org/cargo-dist/${SNAPSHOT_DATE}/${SNAPSHOT}"
 
 LICENCES="Apache-2.0 MIT"
 SLOT="0"
@@ -36,6 +34,53 @@ DEFAULT_SRC_INSTALL_PARAMS=(
     PREFIX=/usr
 )
 
+src_unpack() {
+    scm_src_unpack
+
+    edo mkdir -p "${WORK}"/target/dl
+    edo cp ${FETCHEDDIR}/${SNAPSHOT} "${WORK}"/target/dl
+}
+
+src_prepare() {
+    default
+
+    # Don't fetch the snapshot again
+    edo sed -i '/curl/c\ret = 0' src/etc/dl-snapshot.py
+
+    # TODO This is a hack, I should implement this logic in a cargo.exlib
+    # Feed the git repos to cargo
+    local git_db="${TEMP}"/.cargo/git/db
+    local hamcrest=hamcrest-rust-10447e2e6c2a77a7
+    local hammer=hammer.rs-8d93543821025eee
+    local toml=toml-rs-a5e9b18b5f3b02a6
+    edo mkdir -p "${git_db}"/{${hamcrest},${hammer},${toml}}
+    edo cp -r ${FETCHEDDIR}/scm/hamcrest_rust/* \
+        "${git_db}"/${hamcrest}
+    edo cp -r ${FETCHEDDIR}/scm/hammer_rs/* \
+        "${git_db}"/${hammer}
+    edo cp -r ${FETCHEDDIR}/scm/toml_rs/* \
+        "${git_db}"/${toml}
+
+    local git_checkout="${TEMP}"/.cargo/git/checkouts
+    # TODO These should be read from the Cargo.toml
+    local hamcrest_ref=05acf768
+    local hammer_ref=c085c639
+    local toml_ref=a3c7f2c3
+
+    edo mkdir -p \
+        "${git_checkout}"/${hamcrest}/${hamcrest_ref} \
+        "${git_checkout}"/${hammer}/${hammer_ref} \
+        "${git_checkout}"/${toml}/${toml_ref}
+    edo git --git-dir=${git_db}/${hamcrest} \
+        --work-tree=${git_checkout}/${hamcrest}/${hamcrest_ref} \
+        checkout -f ${hamcrest_ref} --
+    edo git --git-dir=${git_db}/${hammer} \
+        --work-tree=${git_checkout}/${hammer}/${hammer_ref} \
+        checkout -f ${hammer_ref} --
+    edo git --git-dir=${git_db}/${toml} \
+        --work-tree=${git_checkout}/${toml}/${toml_ref} \
+        checkout -f ${toml_ref} --
+}
 
 src_install() {
     default
