@@ -3,22 +3,22 @@
 
 SCM_SECONDARY_REPOSITORIES="
     hamcrest_rust
-    hammer_rs
+    docopt_rs
     toml_rs
 "
 
 SCM_hamcrest_rust_REPOSITORY="https://github.com/carllerche/hamcrest-rust.git"
-SCM_hammer_rs_REPOSITORY="https://github.com/wycats/hammer.rs.git"
+SCM_docopt_rs_REPOSITORY="https://github.com/burntsushi/docopt.rs.git"
 SCM_toml_rs_REPOSITORY="https://github.com/alexcrichton/toml-rs.git"
 
-SNAPSHOT_DATE="2014-07-26"
+SNAPSHOT_DATE="2014-07-29"
 
 require github [ user="rust-lang" ]
 
 SUMMARY="The Rust package manager"
 HOMEPAGE="http://crates.io"
-SNAPSHOT="${PN}-nightly-linux.tar.gz"
-DOWNLOADS="http://static.rust-lang.org/cargo-dist/${SNAPSHOT_DATE}/${SNAPSHOT}"
+TARBALL="${PN}-nightly-linux.tar.gz"
+DOWNLOADS="http://static.rust-lang.org/cargo-dist/${SNAPSHOT_DATE}/${TARBALL} -> ${SNAPSHOT_DATE}-${TARBALL}"
 
 LICENCES="Apache-2.0 MIT"
 SLOT="0"
@@ -30,15 +30,12 @@ DEPENDENCIES="
         dev-lang/rust[=scm]
 "
 
-DEFAULT_SRC_INSTALL_PARAMS=(
-    PREFIX=/usr
-)
-
 src_unpack() {
     scm_src_unpack
 
+    # Place the snapshot where expected
     edo mkdir -p "${WORK}"/target/dl
-    edo cp ${FETCHEDDIR}/${SNAPSHOT} "${WORK}"/target/dl
+    edo cp "${FETCHEDDIR}/${SNAPSHOT_DATE}-${TARBALL}" "${WORK}"/target/dl/${TARBALL}
 }
 
 src_prepare() {
@@ -51,40 +48,53 @@ src_prepare() {
     # Feed the git repos to cargo
     local git_db="${TEMP}"/.cargo/git/db
     local hamcrest=hamcrest-rust-10447e2e6c2a77a7
-    local hammer=hammer.rs-8d93543821025eee
+    local docopt=docopt.rs-79e2ab870b490e0f
     local toml=toml-rs-a5e9b18b5f3b02a6
-    edo mkdir -p "${git_db}"/{${hamcrest},${hammer},${toml}}
+    edo mkdir -p "${git_db}"/{${hamcrest},${docopt},${toml}}
     edo cp -r ${FETCHEDDIR}/scm/hamcrest_rust/* \
         "${git_db}"/${hamcrest}
-    edo cp -r ${FETCHEDDIR}/scm/hammer_rs/* \
-        "${git_db}"/${hammer}
+    edo cp -r ${FETCHEDDIR}/scm/docopt_rs/* \
+        "${git_db}"/${docopt}
     edo cp -r ${FETCHEDDIR}/scm/toml_rs/* \
         "${git_db}"/${toml}
 
     local git_checkout="${TEMP}"/.cargo/git/checkouts
     # TODO These should be read from the Cargo.toml
     local hamcrest_ref=05acf768
-    local hammer_ref=c085c639
+    local docopt_ref=0babd54a
     local toml_ref=a3c7f2c3
 
     edo mkdir -p \
         "${git_checkout}"/${hamcrest}/${hamcrest_ref} \
-        "${git_checkout}"/${hammer}/${hammer_ref} \
+        "${git_checkout}"/${docopt}/${docopt_ref} \
         "${git_checkout}"/${toml}/${toml_ref}
     edo git --git-dir=${git_db}/${hamcrest} \
         --work-tree=${git_checkout}/${hamcrest}/${hamcrest_ref} \
         checkout -f ${hamcrest_ref} --
-    edo git --git-dir=${git_db}/${hammer} \
-        --work-tree=${git_checkout}/${hammer}/${hammer_ref} \
-        checkout -f ${hammer_ref} --
+    edo git --git-dir=${git_db}/${docopt} \
+        --work-tree=${git_checkout}/${docopt}/${docopt_ref} \
+        checkout -f ${docopt_ref} --
     edo git --git-dir=${git_db}/${toml} \
         --work-tree=${git_checkout}/${toml}/${toml_ref} \
         checkout -f ${toml_ref} --
 }
 
-src_install() {
-    default
+src_configure() {
+    # Work around  bad installation path expansion, see src_install
+    edo ./configure --prefix="${IMAGE}"/usr
+}
 
+src_compile() {
+    # Make install recompiles the source, so skip this phase
+    :
+}
+
+src_install() {
+    # Don't pass DESTDIR here, because the Makefile is broken and installs to
+    # ${DESTDIR}/${DESTDIR}/${PREFIX}
+    emake -j1 install
+
+    # No option to set libdir, so move it manually
     if [[ ${LIBDIR} == lib64 ]]; then
         edo mv "${IMAGE}"/usr/lib "${IMAGE}"/usr/lib64
     fi
