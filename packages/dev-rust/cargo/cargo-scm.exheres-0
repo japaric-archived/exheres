@@ -6,6 +6,7 @@ SCM_SECONDARY_REPOSITORIES="
     hamcrest_rust
     rust_encoding
     rust_url
+    semver
     toml_rs
 "
 
@@ -13,6 +14,7 @@ SCM_docopt_rs_REPOSITORY="https://github.com/burntsushi/docopt.rs.git"
 SCM_hamcrest_rust_REPOSITORY="https://github.com/carllerche/hamcrest-rust.git"
 SCM_rust_encoding_REPOSITORY="https://github.com/lifthrasiir/rust-encoding.git"
 SCM_rust_url_REPOSITORY="https://github.com/servo/rust-url.git"
+SCM_semver_REPOSITORY="https://github.com/rust-lang/semver.git"
 SCM_toml_rs_REPOSITORY="https://github.com/alexcrichton/toml-rs.git"
 
 SNAPSHOT_DATE="2014-07-30"
@@ -54,15 +56,18 @@ src_prepare() {
     local docopt=docopt.rs-79e2ab870b490e0f
     local encoding=rust-encoding-03f3b95a10160e29
     local hamcrest=hamcrest-rust-10447e2e6c2a77a7
+    local semver=semver-3d8e61af2bcb489a
     local toml=toml-rs-a5e9b18b5f3b02a6
     local url=rust-url-3ddac0958e207dae
-    edo mkdir -p "${git_db}"/{${docopt},${encoding},${hamcrest},${toml},${url}}
+    edo mkdir -p "${git_db}"/{${docopt},${encoding},${hamcrest},${semver},${toml},${url}}
     edo cp -r ${FETCHEDDIR}/scm/docopt_rs/* \
         "${git_db}"/${docopt}
     edo cp -r ${FETCHEDDIR}/scm/rust_encoding/* \
         "${git_db}"/${encoding}
     edo cp -r ${FETCHEDDIR}/scm/hamcrest_rust/* \
         "${git_db}"/${hamcrest}
+    edo cp -r ${FETCHEDDIR}/scm/semver/* \
+        "${git_db}"/${semver}
     edo cp -r ${FETCHEDDIR}/scm/toml_rs/* \
         "${git_db}"/${toml}
     edo cp -r ${FETCHEDDIR}/scm/rust_url/* \
