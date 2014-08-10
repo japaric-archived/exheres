@@ -17,7 +17,7 @@ SCM_rust_url_REPOSITORY="https://github.com/servo/rust-url.git"
 SCM_semver_REPOSITORY="https://github.com/rust-lang/semver.git"
 SCM_toml_rs_REPOSITORY="https://github.com/alexcrichton/toml-rs.git"
 
-SNAPSHOT_DATE="2014-08-04"
+SNAPSHOT_DATE="2014-08-08"
 
 require github [ user="rust-lang" ]
 
@@ -50,15 +50,18 @@ src_prepare() {
     # Don't fetch the snapshot again
     edo sed -i '/curl/c\ret = 0' src/etc/dl-snapshot.py
 
+    # Bleeding edge!
+    edo rm Cargo.lock
+
     # TODO This is a hack, I should implement this logic in a cargo.exlib
     # Feed the git repos to cargo
     local git_db="${TEMP}"/.cargo/git/db
-    local docopt=docopt.rs-79e2ab870b490e0f
-    local encoding=rust-encoding-03f3b95a10160e29
-    local hamcrest=hamcrest-rust-10447e2e6c2a77a7
-    local semver=semver-3d8e61af2bcb489a
-    local toml=toml-rs-a5e9b18b5f3b02a6
-    local url=rust-url-3ddac0958e207dae
+    local docopt=docopt.rs-80b42b33f8e8004f
+    local encoding=rust-encoding-aceee0e55a114022
+    local hamcrest=hamcrest-rust-38ec3a2c2573160a
+    local semver=semver-8493bce6e16ec7b9
+    local toml=toml-rs-73fb57c92ca3f82c
+    local url=rust-url-1e22af4233079a1e
     edo mkdir -p "${git_db}"/{${docopt},${encoding},${hamcrest},${semver},${toml},${url}}
     edo cp -r ${FETCHEDDIR}/scm/docopt_rs/* \
         "${git_db}"/${docopt}
