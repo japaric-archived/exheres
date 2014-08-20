@@ -17,7 +17,7 @@ SCM_rust_url_REPOSITORY="https://github.com/servo/rust-url.git"
 SCM_semver_REPOSITORY="https://github.com/rust-lang/semver.git"
 SCM_toml_rs_REPOSITORY="https://github.com/alexcrichton/toml-rs.git"
 
-SNAPSHOT_DATE="2014-08-08"
+SNAPSHOT_DATE="2014-08-19"
 
 require github [ user="rust-lang" ]
 
@@ -51,7 +51,7 @@ src_prepare() {
     edo sed -i '/curl/c\ret = 0' src/etc/dl-snapshot.py
 
     # Bleeding edge!
-    edo rm Cargo.lock
+    #edo rm Cargo.lock
 
     # TODO This is a hack, I should implement this logic in a cargo.exlib
     # Feed the git repos to cargo
