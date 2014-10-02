@@ -1,30 +1,9 @@
 # Copyright 2014 Jorge Aparicio
 # Distributed under the terms of the GNU General Public License v2
 
-SCM_SECONDARY_REPOSITORIES="
-    docopt_rs
-    hamcrest_rust
-    rust_encoding
-    rust_url
-    semver
-    toml_rs
-"
-
-SCM_docopt_rs_REPOSITORY="https://github.com/burntsushi/docopt.rs.git"
-SCM_hamcrest_rust_REPOSITORY="https://github.com/carllerche/hamcrest-rust.git"
-SCM_rust_encoding_REPOSITORY="https://github.com/lifthrasiir/rust-encoding.git"
-SCM_rust_url_REPOSITORY="https://github.com/servo/rust-url.git"
-SCM_semver_REPOSITORY="https://github.com/rust-lang/semver.git"
-SCM_toml_rs_REPOSITORY="https://github.com/alexcrichton/toml-rs.git"
-
-SNAPSHOT_DATE="2014-08-19"
-
-require github [ user="rust-lang" ]
-
-SUMMARY="The Rust package manager"
+SUMMARY="The Rust package manager (nightly version)"
 HOMEPAGE="http://crates.io"
-TARBALL="${PN}-nightly-x86_64-unknown-linux-gnu.tar.gz"
-DOWNLOADS="http://static.rust-lang.org/cargo-dist/${SNAPSHOT_DATE}/${TARBALL} -> ${SNAPSHOT_DATE}-${TARBALL}"
+DOWNLOADS="https://static.rust-lang.org/${PN}-dist/${PN}-nightly-x86_64-unknown-linux-gnu.tar.gz"
 
 LICENCES="Apache-2.0 MIT"
 SLOT="0"
@@ -32,62 +11,14 @@ PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
-    build+run:
+    run:
         dev-lang/rust[=scm]
 "
 
-src_unpack() {
-    scm_src_unpack
+WORK=${WORKBASE}/cargo-nightly-x86_64-unknown-linux-gnu
 
-    # Place the snapshot where expected
-    edo mkdir -p "${WORK}"/target/dl
-    edo cp "${FETCHEDDIR}/${SNAPSHOT_DATE}-${TARBALL}" "${WORK}"/target/dl/${TARBALL}
-}
-
-src_prepare() {
-    default
-
-    # Don't fetch the snapshot again
-    edo sed -i '/curl/c\ret = 0' src/etc/dl-snapshot.py
-
-    # Bleeding edge!
-    #edo rm Cargo.lock
-
-    # TODO This is a hack, I should implement this logic in a cargo.exlib
-    # Feed the git repos to cargo
-    local git_db="${TEMP}"/.cargo/git/db
-    local docopt=docopt.rs-80b42b33f8e8004f
-    local encoding=rust-encoding-aceee0e55a114022
-    local hamcrest=hamcrest-rust-38ec3a2c2573160a
-    local semver=semver-8493bce6e16ec7b9
-    local toml=toml-rs-73fb57c92ca3f82c
-    local url=rust-url-1e22af4233079a1e
-    edo mkdir -p "${git_db}"/{${docopt},${encoding},${hamcrest},${semver},${toml},${url}}
-    edo cp -r ${FETCHEDDIR}/scm/docopt_rs/* \
-        "${git_db}"/${docopt}
-    edo cp -r ${FETCHEDDIR}/scm/rust_encoding/* \
-        "${git_db}"/${encoding}
-    edo cp -r ${FETCHEDDIR}/scm/hamcrest_rust/* \
-        "${git_db}"/${hamcrest}
-    edo cp -r ${FETCHEDDIR}/scm/semver/* \
-        "${git_db}"/${semver}
-    edo cp -r ${FETCHEDDIR}/scm/toml_rs/* \
-        "${git_db}"/${toml}
-    edo cp -r ${FETCHEDDIR}/scm/rust_url/* \
-        "${git_db}"/${url}
-}
-
-src_configure() {
-    # Cargo hates all the other default configure flags
-    edo ./configure --prefix=/usr
-}
+# TODO (japaric/exheres#1) Properly bootstrap cargo
 
 src_install() {
-    default
-
-    # No option to set libdir, so move it manually
-    if [[ ${LIBDIR} == lib64 ]]; then
-        edo mv "${IMAGE}"/usr/lib "${IMAGE}"/usr/lib64
-    fi
+    edo ./install.sh --destdir="${IMAGE}" --libdir=${LIBDIR} --prefix=/usr
 }
-
