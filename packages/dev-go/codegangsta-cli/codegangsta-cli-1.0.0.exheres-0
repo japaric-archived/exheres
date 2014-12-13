@@ -6,7 +6,7 @@ GO_USER=codegangsta
 GO_PROJECT=cli
 SYSTEM_GOPATH=/usr/share/gocode
 
-require github [ user=${GO_USER} pn=${GO_PROJECT} rev="${PV}" ]
+require github [ user=${GO_USER} pn=${GO_PROJECT} ]
 
 SUMMARY="A small package for building command line apps in Go"
 DESCRIPTION="

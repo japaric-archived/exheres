@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require vim-plugin [ vim_version="7.2" ]
-require github [ user=Lokaltog pn="vim-${PN}" rev="${PV}" ]
+require github [ user=Lokaltog pn="vim-${PN}" ]
 
 SUMMARY="Vim motions on speed!"
 

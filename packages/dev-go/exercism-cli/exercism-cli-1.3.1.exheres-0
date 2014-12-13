@@ -6,7 +6,7 @@ GO_USER=exercism
 GO_PROJECT=cli
 SYSTEM_GOPATH=/usr/share/gocode
 
-require github [ user=${GO_USER} pn=${GO_PROJECT} rev="v${PV}" ]
+require github [ user=${GO_USER} pn=${GO_PROJECT} tag="v${PV}" ]
 
 SUMMARY="A Go based command line tool for exercism.io"
 HOMEPAGE="http://exercism.io"
