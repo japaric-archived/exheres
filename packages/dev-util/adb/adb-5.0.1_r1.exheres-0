@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_TAG="android-${PV}"
-SCM_REPOSITORY="http://android.googlesource.com/platform/system/core.git"
+SCM_REPOSITORY="https://android.googlesource.com/platform/system/core.git"
 SCM_CHECKOUT_TO="android-system-core"
 
 require scm-git
@@ -17,7 +17,6 @@ PLATFORMS="~amd64"
 DEPENDENCIES="
     build+run:
         dev-libs/openssl
-        sys-libs/glibc
         sys-libs/zlib
 "
 
