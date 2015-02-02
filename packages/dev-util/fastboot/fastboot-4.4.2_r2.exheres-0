@@ -1,14 +1,14 @@
 # Copyright 2014 Jorge Aparicio
 # Distributed under the terms of the GNU General Public License v2
 
-SCM_REPOSITORY="http://android.googlesource.com/platform/system/core.git"
+SCM_REPOSITORY="https://android.googlesource.com/platform/system/core.git"
 SCM_CHECKOUT_TO="android-system-core"
 SCM_TAG="android-${PV}"
 
-SCM_extras_REPOSITORY="http://android.googlesource.com/platform/system/extras.git"
+SCM_extras_REPOSITORY="https://android.googlesource.com/platform/system/extras.git"
 SCM_extras_CHECKOUT_TO="android-system-extras"
 SCM_extras_TAG="android-${PV}"
-SCM_libselinux_REPOSITORY="http://android.googlesource.com/platform/external/libselinux.git"
+SCM_libselinux_REPOSITORY="https://android.googlesource.com/platform/external/libselinux.git"
 SCM_libselinux_CHECKOUT_TO="android-external-libselinux"
 SCM_libselinux_TAG="android-${PV}"
 
