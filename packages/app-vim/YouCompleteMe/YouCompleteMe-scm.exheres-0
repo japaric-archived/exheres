@@ -16,6 +16,8 @@ SCM_ycmd_EXTERNAL_REFS="
     third_party/bottle:
     third_party/frozendict:
     third_party/jedi:
+    third_party/requests:
+    third_party/sh:
     third_party/waitress:
 "
 require github [ user=Valloric ]
@@ -57,6 +59,7 @@ DEPENDENCIES="
         dev-python/requests[python_abis:*(-)?]
         dev-python/requests-futures[python_abis:*(-)?]
         dev-python/retries[python_abis:*(-)?]
+        dev-python/sh[python_abis:*(-)?]
         dev-python/waitress[python_abis:*(-)?]
         dev-util/jedi[python_abis:*(-)?] [[ description = [ autocompletion for python ] ]]
 "
