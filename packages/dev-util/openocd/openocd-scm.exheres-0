@@ -24,8 +24,8 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build+run:
-        virtual/usb
-        ftdi? ( dev-libs/libftdi )
+        virtual/usb:1
+        ftdi? ( dev-libs/libftdi:1 )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
