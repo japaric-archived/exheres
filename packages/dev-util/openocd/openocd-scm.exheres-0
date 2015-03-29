@@ -33,7 +33,6 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    "ftdi ft2232_libftdi"
     "ftdi openjtag_libftdi"
     "ftdi presto_libftdi"
     "ftdi usb_blaster_libftdi"
