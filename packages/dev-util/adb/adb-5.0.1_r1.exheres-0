@@ -20,17 +20,13 @@ DEPENDENCIES="
         sys-libs/zlib
 "
 
-src_compile() {
-    pushd adb
+WORK="${WORK}/adb"
 
+src_prepare() {
     edo cp "${FILES}"/Makefile .
-    emake
-
-    popd
 }
 
 src_install() {
-    exeinto /usr/bin
-    doexe adb/adb
+    dobin adb
 }
 

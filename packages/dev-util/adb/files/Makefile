@@ -43,4 +43,4 @@ OBJS= $(SRCS:.c=.o)
 all: adb
 
 adb: $(OBJS)
-	cc -o $@ $(LDFLAGS) $(OBJS) $(LIBS)
+	$(CC) -o $@ $(LDFLAGS) $(OBJS) $(LIBS)
