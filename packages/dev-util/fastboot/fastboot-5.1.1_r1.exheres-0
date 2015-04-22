@@ -8,11 +8,15 @@ SCM_TAG="android-${PV}"
 SCM_extras_REPOSITORY="https://android.googlesource.com/platform/system/extras.git"
 SCM_extras_CHECKOUT_TO="android-system-extras"
 SCM_extras_TAG="android-${PV}"
+SCM_f2fs_tools_REPOSITORY="https://android.googlesource.com/platform/external/f2fs-tools.git"
+SCM_f2fs_tools_CHECKOUT_TO="android-external-f2fs-tools"
+SCM_f2fs_tools_UNPACK_TO="${WORKBASE}/f2fs-tools"
+SCM_f2fs_tools_TAG="android-${PV}"
 SCM_libselinux_REPOSITORY="https://android.googlesource.com/platform/external/libselinux.git"
 SCM_libselinux_CHECKOUT_TO="android-external-libselinux"
 SCM_libselinux_TAG="android-${PV}"
 
-SCM_SECONDARY_REPOSITORIES="extras libselinux"
+SCM_SECONDARY_REPOSITORIES="extras f2fs_tools libselinux"
 
 require scm-git
 
@@ -25,20 +29,18 @@ PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:
+        dev-libs/pcre
         sys-libs/zlib
 "
 
-src_compile() {
-    pushd fastboot
+WORK="${WORK}/fastboot"
 
+src_prepare() {
+    edo sed -i -e 's/f2fs_sparse_file = NULL/f2fs_sparse_file = 0/g' -i "${WORKBASE}/extras/f2fs_utils/f2fs_utils.c"
     edo cp "${FILES}"/Makefile .
-    emake
-
-    popd
 }
 
 src_install() {
-    exeinto /usr/bin
-    doexe fastboot/fastboot
+    dobin fastboot
 }
 
