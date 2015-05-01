@@ -4,9 +4,9 @@
 
 SCM_SECONDARY_REPOSITORIES="ycmd"
 SCM_EXTERNAL_REFS="
-    third_party/ycmd:ycmd
-    third_party/requests:
     third_party/requests-futures:
+    third_party/requests:
+    third_party/ycmd:ycmd
 "
 
 SCM_ycmd_REPOSITORY="https://github.com/Valloric/ycmd.git"
@@ -15,6 +15,7 @@ SCM_ycmd_EXTERNAL_REFS="
     third_party/argparse:
     third_party/bottle:
     third_party/frozendict:
+    third_party/gocode:
     third_party/jedi:
     third_party/requests:
     third_party/sh:
