@@ -1,7 +1,8 @@
 # Copyright 2013 Jorge Aparicio
 # Distributed under the terms of the GNU General Public License v2
 
-require pypi
+# Pypi's tarball doesn't contain the test suite, use github's releases
+require github [ user=flintwork ]
 require setup-py [ import=setuptools ]
 
 SUMMARY="McCabe checker, plugin for flake8"
