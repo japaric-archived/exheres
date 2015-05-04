@@ -14,9 +14,9 @@ PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:
-        dev-python/mccabe[>=0.2.1][python_abis:*(-)?]
-        dev-python/pep8[>=1.4.6][python_abis:*(-)?]
-        dev-python/pyflakes[>=0.7.3][python_abis:*(-)?]
+        dev-python/mccabe[>=0.2.1&<0.4][python_abis:*(-)?]
+        dev-python/pep8[>=1.5.7&<1.6][python_abis:*(-)?]
+        dev-python/pyflakes[>=0.8.1&<0.9][python_abis:*(-)?]
     test:
         dev-python/mock[>=0.2.1][python_abis:*(-)?]
         dev-python/nose[>=0.2.1][python_abis:*(-)?]
