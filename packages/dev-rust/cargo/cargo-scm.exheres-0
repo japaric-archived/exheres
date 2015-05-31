@@ -1,6 +1,11 @@
 # Copyright 2014 Jorge Aparicio
 # Distributed under the terms of the GNU General Public License v2
 
+BASH_COMPLETIONS=( "${PN}/etc/bash_completion.d/${PN}" )
+ZSH_COMPLETIONS=( "${PN}/share/zsh/site-functions/_${PN}" )
+
+require bash-completion zsh-completion
+
 SUMMARY="The Rust package manager (nightly version)"
 HOMEPAGE="http://crates.io"
 DOWNLOADS="https://static.rust-lang.org/${PN}-dist/${PN}-nightly-x86_64-unknown-linux-gnu.tar.gz"
@@ -12,7 +17,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     run:
-        dev-lang/rust[=scm]
+        dev-lang/rust
 "
 
 WORK=${WORKBASE}/cargo-nightly-x86_64-unknown-linux-gnu
@@ -20,5 +25,12 @@ WORK=${WORKBASE}/cargo-nightly-x86_64-unknown-linux-gnu
 # TODO (japaric/exheres#1) Properly bootstrap cargo
 
 src_install() {
-    edo ./install.sh --destdir="${IMAGE}" --libdir=${LIBDIR} --prefix=/usr
+    edo ./install.sh --destdir="${IMAGE}" --prefix=/usr --libdir=$(exhost --target)/lib --disable-ldconfig
+    edo mkdir "${IMAGE}"/usr/$(exhost --target)
+    edo mv "${IMAGE}"/usr/{bin,$(exhost --target)}
+    edo mv "${IMAGE}"/usr/share/doc/{${PN},${PNVR}}
+    edo rm -r "${IMAGE}"/usr/etc
+    bash-completion_src_install
+    edo rm -r "${IMAGE}"/usr/share/zsh
+    zsh-completion_src_install
 }
