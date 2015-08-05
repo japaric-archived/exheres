@@ -1,0 +1,33 @@
+# Copyright 2014 Jorge Aparicio
+# Copyright 2015 Marvin Schmidt <marv@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Open On-Chip Debugger"
+HOMEPAGE="http://sourceforge.net/projects/openocd"
+
+LICENCES="GPL-2"
+SLOT="0"
+
+MYOPTIONS="
+    ftdi [[ description = [ Build support for FTDI devices ] ]]
+    parport [[ description = [ Build the parallel port driver ] ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        virtual/usb:1
+        ftdi? ( dev-libs/libftdi:1 )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --disable-werror
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    "ftdi openjtag_libftdi"
+    "ftdi presto_libftdi"
+    "ftdi usb_blaster_libftdi"
+    ftdi
+    parport
+)
+

@@ -8,37 +8,11 @@ SCM_SECONDARY_REPOSITORIES="jimtcl git2cl"
 
 SCM_EXTERNAL_REFS="jimtcl:jimtcl tools/git2cl:git2cl"
 
+require openocd
 require github [ user=ntfreak ]
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
 
-SUMMARY="Open On-Chip Debugger"
-HOMEPAGE="http://sourceforge.net/projects/openocd"
-
-LICENCES="GPL-2"
-SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="
-    ftdi [[ description = [ Build support for FTDI devices ] ]]
-    parport [[ description = [ Build the parallel port driver ] ]]
-"
-
-DEPENDENCIES="
-    build+run:
-        virtual/usb:1
-        ftdi? ( dev-libs/libftdi:1 )
-"
 
 AT_NO_RECURSIVE=1
-
-DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --disable-werror
-)
-
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    "ftdi openjtag_libftdi"
-    "ftdi presto_libftdi"
-    "ftdi usb_blaster_libftdi"
-    ftdi
-    parport
-)
 
