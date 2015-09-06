@@ -2,8 +2,9 @@
 # Copyright 2015 Marvin Schmidt <marv@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
+require sourceforge [ suffix=tar.gz ]
+
 SUMMARY="Open On-Chip Debugger"
-HOMEPAGE="http://sourceforge.net/projects/openocd"
 
 LICENCES="GPL-2"
 SLOT="0"
