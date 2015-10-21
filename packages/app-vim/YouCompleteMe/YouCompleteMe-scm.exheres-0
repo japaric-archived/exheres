@@ -18,7 +18,6 @@ SCM_ycmd_EXTERNAL_REFS="
     third_party/gocode:
     third_party/jedi:
     third_party/requests:
-    third_party/sh:
     third_party/waitress:
 "
 require github [ user=Valloric ]
@@ -75,8 +74,15 @@ CMAKE_SRC_CONFIGURE_OPTIONS=(
 src_install() {
     insinto /usr/share/vim/vimfiles
     doins -r autoload doc plugin python
+
     insinto /usr/share/vim/vimfiles/third_party/ycmd
-    doins -r third_party/ycmd/ycm{{_client_support,_core}.so,d}
+    edo pushd third_party/ycmd/
+    doins -r ycmd
+    doins ycm_{client_support,core}.so
+    doins check_core_version.py
+    doins CORE_VERSION
+    edo popd
+
     dodoc README.md CONTRIBUTING.md
 }
 
