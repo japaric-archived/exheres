@@ -5,7 +5,6 @@
 SCM_SECONDARY_REPOSITORIES="ycmd"
 SCM_EXTERNAL_REFS="
     third_party/requests-futures:
-    third_party/requests:
     third_party/ycmd:ycmd
 "
 
