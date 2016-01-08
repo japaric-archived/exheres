@@ -21,5 +21,7 @@ src_install() {
 
     doins *.zsh
     doins -r highlighters
+    doins .revision-hash
+    doins .version
 }
 
