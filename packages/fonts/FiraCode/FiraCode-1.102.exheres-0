@@ -1,0 +1,19 @@
+# Copyright 2016 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+FONT_FILES=(
+    *.otf
+)
+
+require simple-font
+require github [ user=tonsky ]
+
+SUMMARY="Monospaced font with programming ligatures"
+
+LICENCES="OFL-1.1"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
