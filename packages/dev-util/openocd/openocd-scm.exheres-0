@@ -1,12 +1,21 @@
 # Copyright 2014 Jorge Aparicio
 # Distributed under the terms of the GNU General Public License v2
 
-SCM_jimtcl_REPOSITORY="http://repo.or.cz/r/jimtcl"
 SCM_git2cl_REPOSITORY="http://repo.or.cz/r/git2cl.git"
+SCM_jimtcl_REPOSITORY="http://repo.or.cz/r/jimtcl"
+SCM_libjaylink_REPOSITORY="http://repo.or.cz/r/libjaylink"
 
-SCM_SECONDARY_REPOSITORIES="jimtcl git2cl"
+SCM_SECONDARY_REPOSITORIES="
+git2cl
+jimtcl
+libjaylink
+"
 
-SCM_EXTERNAL_REFS="jimtcl:jimtcl tools/git2cl:git2cl"
+SCM_EXTERNAL_REFS="
+jimtcl:jimtcl
+src/jtag/drivers/libjaylink:libjaylink
+tools/git2cl:git2cl
+"
 
 require openocd
 require github [ user=ntfreak ]
