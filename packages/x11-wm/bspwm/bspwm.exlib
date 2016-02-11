@@ -1,0 +1,40 @@
+# Copyright 2014 Jorge Aparicio
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A tiling window manager based on binary space partitioning"
+
+LICENCES="BSD-2"
+SLOT="0"
+MYOPTIONS="bash-completion examples zsh-completion"
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/libxcb
+        x11-utils/xcb-util
+        x11-utils/xcb-util-wm
+"
+
+DEFAULT_SRC_INSTALL_PARAMS=(
+    BASHCPL=/usr/share/bash-completion/completions
+    MANPREFIX=/usr/share/man
+    PREFIX=/usr/$(exhost --target)
+    ZSHCPL=/usr/share/zsh/site-functions
+)
+
+src_install() {
+    default
+
+    if option examples; then
+        insinto /usr/share/doc/${PNV}
+        doins -r examples
+    fi
+
+    if ! option bash-completion; then
+        rm -rf "${IMAGE}"/usr/share/bash-completion
+    fi
+
+    if ! option zsh-completion; then
+        rm -rf "${IMAGE}"/usr/share/zsh
+    fi
+}
+
