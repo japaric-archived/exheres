@@ -11,6 +11,14 @@ PLATFORMS="~amd64"
 
 WORK="${WORKBASE}"
 
+DEPENDENCIES="
+    build+run:
+        !firmware/linux-firmware [[
+            description = [ linux-firmware already contains this firmware ]
+            resolution = manual
+        ]]
+"
+
 src_install() {
     insinto /${LIBDIR}/firmware/rtlwifi
 
