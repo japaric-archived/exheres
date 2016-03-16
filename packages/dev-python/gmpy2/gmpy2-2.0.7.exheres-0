@@ -16,9 +16,11 @@ HOMEPAGE="http://code.google.com/p/gmpy/"
 
 LICENCES="LGPL-3"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 
 DEPENDENCIES="
+    build:
+        virtual/unzip
     build+run:
         dev-libs/gmp:5
         dev-libs/mpc[>=1.0.1]
