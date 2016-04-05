@@ -2,17 +2,19 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Pypi's tarball doesn't contain the test suite, use github's releases
-require github [ user=flintwork ]
-require setup-py [ import=setuptools ]
+require github [ user=PyCQA ]
+require setup-py [ import=setuptools test=pytest ]
 
 SUMMARY="McCabe checker, plugin for flake8"
-HOMEPAGE="https://github.com/flintwork/${PN}"
+HOMEPAGE="https://github.com/PyCQA/${PN}"
 
 LICENCES="MIT"
 SLOT="0"
 PLATFORMS="~amd64"
 
 DEPENDENCIES="
+    build+run:
+        dev-python/pytest-runner[python_abis:*(-)?]
     post:
         dev-python/flake8[python_abis:*(-)?]
 "
