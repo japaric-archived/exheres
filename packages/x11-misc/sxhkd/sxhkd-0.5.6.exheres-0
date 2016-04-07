@@ -1,4 +1,4 @@
-# Copyright 2014 Jorge Aparicio
+# Copyright 2014-2016 Jorge Aparicio
 # Distributed under the terms of the GNU General Public License v2
 
 require github [ user=baskerville ]
@@ -20,15 +20,18 @@ DEPENDENCIES="
 DEFAULT_SRC_INSTALL_PARAMS=(
     DESTDIR="${IMAGE}"
     MANPREFIX=/usr/share/man
+    DOCPREFIX=/usr/share/doc
     PREFIX=/usr/$(exhost --target)
 )
 
 src_install() {
     emake -j1 install ${DEFAULT_SRC_INSTALL_PARAMS[@]}
 
-    if option examples; then
-        insinto /usr/share/doc/${PNV}
-        doins -r examples
+    if ! option examples; then
+        edo rm -r "${IMAGE}"/usr/share/doc/examples
     fi
+
+    # delete empty directories
+    edo find "${IMAGE}" -type d -empty -delete
 }
 
