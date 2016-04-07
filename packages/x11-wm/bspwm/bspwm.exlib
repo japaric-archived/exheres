@@ -1,4 +1,4 @@
-# Copyright 2014 Jorge Aparicio
+# Copyright 2014-2016 Jorge Aparicio
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="A tiling window manager based on binary space partitioning"
@@ -17,6 +17,7 @@ DEPENDENCIES="
 DEFAULT_SRC_INSTALL_PARAMS=(
     BASHCPL=/usr/share/bash-completion/completions
     MANPREFIX=/usr/share/man
+    DOCPREFIX=/usr/share/doc
     PREFIX=/usr/$(exhost --target)
     ZSHCPL=/usr/share/zsh/site-functions
 )
@@ -24,17 +25,16 @@ DEFAULT_SRC_INSTALL_PARAMS=(
 src_install() {
     default
 
-    if option examples; then
-        insinto /usr/share/doc/${PNV}
-        doins -r examples
+    if ! option examples; then
+        edo rm -r "${IMAGE}"/usr/share/doc/examples
     fi
 
     if ! option bash-completion; then
-        rm -rf "${IMAGE}"/usr/share/bash-completion
+        edo rm -r "${IMAGE}"/usr/share/bash-completion
     fi
 
     if ! option zsh-completion; then
-        rm -rf "${IMAGE}"/usr/share/zsh
+        edo rm -r "${IMAGE}"/usr/share/zsh
     fi
 }
 
