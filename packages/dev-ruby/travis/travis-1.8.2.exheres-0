@@ -4,6 +4,12 @@
 require gem
 
 SUMMARY="CLI and Ruby client library for Travis CI"
+DESCRIPTION="
+Includes both a command line client and a Ruby library to interface with a
+Travis CI service. Both work with travis-ci.org, travis-ci.com or any custom
+Travis CI setup you might have. Check out the installation instructions to get
+it running in no time.
+"
 HOMEPAGE="https://github.com/${PN}-ci/${PN}"
 
 LICENCES="MIT"
@@ -12,14 +18,12 @@ PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:
-        dev-ruby/addressable[~>2.3]
         dev-ruby/backports
         dev-ruby/faraday[~>0.9]
         dev-ruby/faraday_middleware[>=0.9.1&~>0.9]
         dev-ruby/gh[~>0.13]
         dev-ruby/highline[~>1.6]
         dev-ruby/launchy[~>2.1]
-        dev-ruby/pry[~>0.9&<0.10]
         dev-ruby/pusher-client[~>0.4]
         dev-ruby/typhoeus[~>0.6&>=0.6.8]
 "
