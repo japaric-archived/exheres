@@ -6,7 +6,7 @@ SCM_EXTERNAL_REFS="jedi:"
 require github [ user=davidhalter pn="${PN}-vim" ]
 
 SUMMARY="Using the jedi autocompletion library for VIM"
-MYOPTIONS="python_abis: 2.6 2.7 3.2 3.3"
+MYOPTIONS="python_abis: 2.7"
 
 LICENCES="MIT"
 SLOT="0"
