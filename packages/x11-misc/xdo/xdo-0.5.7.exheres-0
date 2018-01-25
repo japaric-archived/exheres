@@ -12,6 +12,7 @@ PLATFORMS="~amd64"
 DEPENDENCIES="
     build+run:
         x11-libs/libxcb
+        x11-utils/xcb-util
         x11-utils/xcb-util-wm
 "
 
