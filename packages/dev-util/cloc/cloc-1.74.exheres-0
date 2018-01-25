@@ -1,7 +1,7 @@
 # Copyright 2014-2016 Jorge Aparicio
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=AlDanial suffix=tar.gz release=v${PV} ]
+require github [ user=AlDanial suffix=tar.gz release=${PV} ]
 
 SUMMARY="Count Lines Of Code"
 
