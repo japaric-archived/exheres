@@ -5,20 +5,20 @@ FONT_FILES=(
     OTF/*.otf
 )
 
-require simple-font
+require simple-font github [ user=belluzj release=v${PV} suffix=zip pnv="FantasqueSansMono-Normal" ]
 
 SUMMARY="A font family with a great monospaced variant for programmers"
 DESCRIPTION="
 A programming font, designed with functionality in mind, and with some wibbly-wobbly
 handwriting-like fuzziness that makes it unassumingly cool.
 "
-DOWNLOADS="
-https://github.com/belluzj/${PN}/releases/download/v${PV}/FantasqueSansMono.zip -> ${PNV}.zip
-"
 
 LICENCES="OFL-1.1"
 SLOT="0"
 PLATFORMS="~amd64"
+
+MYOPTIONS=""
+DEPENDENCIES=""
 
 WORK="${WORKBASE}"
 
